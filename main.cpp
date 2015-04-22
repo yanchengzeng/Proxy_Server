@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <netdb.h>
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 int server(uint16_t port, uint16_t cache);
 void *connection(void *sock);
@@ -17,12 +21,13 @@ int handle_request(int connect, char* website, char* webpage_buf, int* initial, 
 char* delete_end_newline(char* string);
 void reply_request(char* webpage, int connect);
 char* strip_http(char* string);
-int retrieve_packet_length(char* data);
+int retrieve_packet_length(string data);
 
 #define MAX_MSG_LENGTH (1024)
 #define MAX_BACK_LOG (5)
 #define DEFAULT_PAGE_SIZE (2000000)
 #define HEADER_BUF_SIZE 1024
+#define MAX_PKT_SIZE 1500
 
 const char* default_address = "127.0.0.1";
 const char* accept_type = "GET";
@@ -89,7 +94,7 @@ int server(uint16_t port, uint16_t cache)
 	listen(serverfd, MAX_BACK_LOG);
 
 	while(1){
-		confd = malloc(sizeof(int));
+		confd = (int *) malloc(sizeof(int));
 		if ((*confd = accept(serverfd, (struct sockaddr *)&listenaddr, &listenlen)) < 0){
 			perror("Accept error");
 		}
@@ -276,57 +281,57 @@ int access_web(char* webpage_request[], char *content_buf, char* original_reques
 	}
 
 	bzero(content_buf, DEFAULT_PAGE_SIZE);
+	char *recv_buf = (char*) malloc(sizeof(char) * MAX_PKT_SIZE);
 	int recv_size = 0;
-	if((recv_size = recv(sockfd, content_buf, DEFAULT_PAGE_SIZE, 0)) == -1){
-		perror("Proxy cannot receive web content");
-		return -1;
-	}
-	retrieve_packet_length(content_buf);
-	printf("Received %d bytes of data from web server\n", recv_size);
+	int object_size = 0;
+	int recv_total = 0;
+	int header_len = 0;
+	bool first_packet = true;
+	do {
+		if((recv_size = recv(sockfd, recv_buf, MAX_PKT_SIZE, 0)) == -1){
+			perror("Proxy cannot receive web content");
+			return -1;
+		}
+
+		// copy receive buffer to content buffer
+		memcpy((void*) &content_buf[recv_total], recv_buf, recv_size);
+
+		// parse header
+		if(first_packet) {
+			string header(recv_buf);
+			header_len = header.size();
+			object_size = retrieve_packet_length(header);
+			first_packet = false;
+		}
+
+		// increment receive total
+		recv_total += recv_size;
+
+		// debug
+		cout << "recv_size   : " << recv_size << endl;
+		cout << "object_size : " << object_size << endl;
+		cout << "header_len  : " << header_len << endl;
+		cout << "recv_total  : " << recv_total << endl;
+		cout << "compare     : " << object_size + header_len << endl;
+
+		//TODO header computation
+	} while(recv_total < (object_size + header_len - 20));
+
 	return 0;
 }
 
-int retrieve_packet_length(char* data){
-	char* token;
-	char** header_buf;
-	int i;
-	int j;
-	header_buf = (char** )malloc(sizeof(char* ) * 64);
-	printf("debug1\n");
-	for(i = 0; i < 64; i++){
-		header_buf[i] = (char* )malloc(sizeof(char) * 1400);
-//		for(j = 0; j < 2048; j++){
-//			header_buf[i][j] = '0';
-//		}
-	}
-	printf("debug2\n");
-	int index = 0;
-	token = strtok(data, " ");
-	long result = 0;
+int retrieve_packet_length(string data){
 
-	if(strcmp(token, http_1_1) == 0){
+	if(data.find(http_1_1) != string::npos) {
 		printf("This is indeed a response header\n");
-		token = strtok(data, ":");
-		while(token != NULL){
-			printf("Token is %s ", token);
-			header_buf[index] = token;
-			index++;
-			token = strtok(NULL, "  \n");
-		}
-		printf("The third spot is %s\n", header_buf[2]);
-		int i;
-		for(i = 0; i < index; i++){
-			if(strcmp(content_length, header_buf[i]) == 0){
-				char* ptr;
-				result = strtol(header_buf[i+1], &ptr, 5);
-				printf("The search len result is %ld\n", result);
-			}
-		}
-		free(header_buf);
-		return (int) result;
-	} else {
-		printf("This packet ain't a response header\n");
-		free(header_buf);
-		return -1;
+		int len_start_index = data.find("Content-Length:") + 15;
+		int len_end_index = data.find_first_of("\n", len_start_index);
+		string slen = data.substr(len_start_index, len_end_index - len_start_index);
+		int len;
+		sscanf(slen.c_str(), "%d", &len);
+		return len;
 	}
+
+	return -1;
+
 }
