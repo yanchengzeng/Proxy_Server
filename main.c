@@ -17,7 +17,7 @@ int handle_request(int connect, char* website, char* webpage_buf, int* initial, 
 char* delete_end_newline(char* string);
 void reply_request(char* webpage, int connect);
 char* strip_http(char* string);
-
+int retrieve_packet_length(char* data);
 
 #define MAX_MSG_LENGTH (1024)
 #define MAX_BACK_LOG (5)
@@ -31,6 +31,7 @@ const char* http_1_1 = "HTTP/1.1";
 const char* port_80 = "80";
 const char* cnn = "www.cnn.com";
 const char* bbc = "www.bbc.com";
+const char* content_length = "Content-Length:";
 
 int main(int argc, char ** argv)
 {
@@ -133,8 +134,8 @@ void *connection(void *sock){
 //handle the HTTP request from browser and deliver the webpage
 int handle_request(int connect, char* received_msg, char* webpage_buf, int* initial, char* request_header[]){
 	printf("The Browser Request Message is:\n\n%sThe length is %zu.\n", received_msg, strlen(received_msg));
-	if(*initial == 0){
-		*initial = 1;
+//	if(*initial == 0){
+//		*initial = 1;
 		if(parse_initial_request_header(received_msg, request_header) == 0){
 			access_web(request_header, webpage_buf, received_msg);
 			reply_request(webpage_buf, connect);
@@ -143,12 +144,12 @@ int handle_request(int connect, char* received_msg, char* webpage_buf, int* init
 			printf("Invalid Non-GET request");
 			return -1;
 		}
-	} else {
+//	} else {
 		//add error handling later for different error signals
-		access_web(request_header, webpage_buf, received_msg);
-		reply_request(webpage_buf, connect);
-		return 0;
-	}
+//		access_web(request_header, webpage_buf, received_msg);
+//		reply_request(webpage_buf, connect);
+//		return 0;
+//	}
 }
 
 
@@ -243,6 +244,7 @@ int access_web(char* webpage_request[], char *content_buf, char* original_reques
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 	char* website = strip_http(webpage_request[1]);
+	printf("The stripped website is %s\n", website);
 	if(rv = getaddrinfo(website, "http", &hints, &serverinfo) != 0){
 		perror("Requesting Remote Server Failed");
    	}
@@ -274,9 +276,56 @@ int access_web(char* webpage_request[], char *content_buf, char* original_reques
 	}
 
 	bzero(content_buf, DEFAULT_PAGE_SIZE);
-	if(recv(sockfd, content_buf, DEFAULT_PAGE_SIZE, 0) == -1){
+	int recv_size = 0;
+	if((recv_size = recv(sockfd, content_buf, DEFAULT_PAGE_SIZE, 0)) == -1){
 		perror("Proxy cannot receive web content");
 		return -1;
 	}
+//	retrieve_packet_length(content_buf);
+	printf("Received %d bytes of data from web server\n", recv_size);
 	return 0;
+}
+
+int retrieve_packet_length(char* data){
+	char* token;
+	char** header_buf;
+	int i;
+	int j;
+	header_buf = (char** )malloc(sizeof(char* ) * 64);
+	printf("debug1\n");
+	for(i = 0; i < 64; i++){
+		header_buf[i] = (char* )malloc(sizeof(char) * 1400);
+//		for(j = 0; j < 2048; j++){
+//			header_buf[i][j] = '0';
+//		}
+	}
+	printf("debug2\n");
+	int index = 0;
+	token = strtok(data, " ");
+	long result = 0;
+
+	if(strcmp(token, http_1_1) == 0){
+		printf("This is indeed a response header\n");
+		while(token != NULL){
+			printf("Token is %s ", token);
+			header_buf[index] = token;
+			index++;
+			token = strtok(NULL, "  \n");
+		}
+		printf("The third spot is %s\n", header_buf[2]);
+		int i;
+		for(i = 0; i < index; i++){
+			if(strcmp(content_length, header_buf[i]) == 0){
+				char* ptr;
+				result = strtol(header_buf[i+1], &ptr, 5);
+				printf("The search len result is %ld\n", result);
+			}
+		}
+		free(header_buf);
+		return (int) result;
+	} else {
+		printf("This packet ain't a response header\n");
+		free(header_buf);
+		return -1;
+	}
 }
