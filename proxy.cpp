@@ -9,6 +9,7 @@
 #include <netdb.h>
 #include <string>
 #include <iostream>
+#include <map>
 
 //TODO try changing to local host
 #define SERVER_IP "127.0.0.1"
@@ -17,12 +18,20 @@
 
 using namespace std;
 
-typedef struct {
+struct get_request {
 	string* op;
 	string* page;
 	string* version;
 	string* host;
-} get_request;
+};
+
+struct client_conn {
+	int client_fd;
+	map<string, int>* host_fds;
+};
+
+typedef struct get_request get_request;
+typedef struct client_conn client_conn;
 
 int server(uint16_t port, uint16_t cache);
 void* handle_connection(void* conn_fd);
@@ -84,13 +93,20 @@ int server(uint16_t port, uint16_t cache)
 
 	// loop for client connections
 	while(1){
-		int* conn_fd = new int;
-		if ((*conn_fd = accept(server_fd, (struct sockaddr*)&listenaddr, &listenlen)) < 0){
+		int conn_fd;
+		if ((conn_fd = accept(server_fd, (struct sockaddr*)&listenaddr, &listenlen)) < 0){
 			perror("Accept error");
 			return -1;
 		}
+
+		// construct new client connection struct
+		client_conn* c_conn = new client_conn;
+		c_conn->client_fd = conn_fd;
+		c_conn->host_fds = new map<string, int>;
+
+		// dispatch worker thread to handle connection
 		pthread_t worker;
-		pthread_create(&worker, NULL, handle_connection, (void*) conn_fd);
+		pthread_create(&worker, NULL, handle_connection, (void*) c_conn);
 	}
 
 	/* close server socket */
@@ -102,8 +118,9 @@ int server(uint16_t port, uint16_t cache)
 	return 0;
 }
 
-void* handle_connection(void* sockfd_ptr) {
-	int sockfd = *((int*) sockfd_ptr);
+void* handle_connection(void* c_conn_ptr) {
+	client_conn* c_conn = (client_conn*) c_conn_ptr;
+	int sockfd = c_conn->client_fd;
 
 	/* loop for client messages */
 	while (1) {
@@ -121,15 +138,16 @@ void* handle_connection(void* sockfd_ptr) {
 			continue;
 		} else { // handle HTTP request
 			string* rcv_str = new string(rcv_buf);
-			//TODO do you really want to spawn a thread here?
+			//TODO change this to queue up a bunch of requests and then handle them all at once
 			pthread_t worker;
 			pthread_create(&worker, NULL, handle_request, (void*) rcv_str);
 		}
 	}
 
-	/* close socket and free memory */
+	/* close socket and free connection struct */
 	close(sockfd);
-	delete (int*) sockfd_ptr;
+	delete c_conn->host_fds;
+	delete c_conn;
 
 	pthread_exit(NULL);
 }
@@ -146,6 +164,8 @@ void* handle_request(void* request_ptr) {
 
 	/* parse get request */
 	get_request* greq = parse_get_request(&request);
+
+	/* open new connection if one doesn't already exist */
 
 }
 
@@ -180,7 +200,6 @@ get_request* parse_get_request(string* request) {
 	greq->host = new string(host);
 
 	return greq;
-
 }
 
 
