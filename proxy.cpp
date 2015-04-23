@@ -207,17 +207,20 @@ void* handle_client_request(client_request* req) {
 		hds->host_addr = greq->host;
 		hds->c_conn = conn;
 
-		pthread_t worker;
-		pthread_create(&worker, NULL, handle_host_downstream, (void*) hds);
+		//pthread_t worker;
+		//pthread_create(&worker, NULL, handle_host_downstream, (void*) hds);
 	} else { // connection to host exists
 		cout << "Host in map." << endl;
 		host_fd = host_map[host_addr];
 	}
 
 	/* forward request to host */
-	if(send(host_fd, request->c_str(), request->length(), 0) < 0) {
+	if(int send_len = send(host_fd, request->c_str(), request->length(), 0) < 0) {
 		perror("Request forwarding error");
+	} else {
+		cout << send_len << " bytes sent." << endl;
 	}
+
 }
 
 void* handle_host_downstream(void *host_dstream) {
@@ -246,7 +249,7 @@ void* forward_data(int source_fd, int dest_fd) {
 	fd_set except_fds;
 	int num_fds;
 
-	tv.tv_sec = 2;
+	tv.tv_sec = 100;
 	tv.tv_usec = 500000;
 
 	/* setup read fd set */
@@ -254,10 +257,15 @@ void* forward_data(int source_fd, int dest_fd) {
 	FD_SET(source_fd, &read_fds);
 
 	while(1) {
+		cout << "Before select." << endl;
+
 		/* wait for something to read on source socket */
 		select(source_fd + 1, &read_fds, NULL, NULL, &tv);
 
+		cout << "After select." << endl;
+
 		if(FD_ISSET(source_fd, &read_fds)) {
+			cout << "Source is able to read." << endl;
 			fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0);
 
 			if(fwd_len = -1) {
@@ -270,7 +278,8 @@ void* forward_data(int source_fd, int dest_fd) {
 
 			/* forward data to destination */
 			send(dest_fd, fwd_buf, fwd_len, 0);
-
+		} else {
+			cout << "Select timed out." << endl;
 		}
 	}
 }
