@@ -13,6 +13,7 @@
 
 #define MAX_BACK_LOG (5)
 #define RCV_BUF_SIZE (1500)
+#define DEBUG (0)
 
 using namespace std;
 
@@ -24,14 +25,16 @@ typedef struct {
 } get_request;
 
 typedef struct {
+	int conn_num;
 	int client_fd;
 	map<string, int>* host_fds;
 } client_conn;
 
 typedef struct {
+	int req_num;
 	string* data;
 	client_conn* c_conn;
-} request;
+} client_request;
 
 typedef struct {
 	int host_fd;
@@ -42,7 +45,7 @@ int server(char* port);
 int create_tcp_conn(char* port, const char* addr);
 void* handle_client_conn(void* conn_fd);
 void* handle_host_downstream(void* conn_fd);
-void* handle_request(void* request_ptr);
+void* handle_client_request(void* request_ptr);
 get_request* parse_get_request(string* request);
 void* forward_data(int source_fd, int dest_fd);
 
@@ -75,22 +78,25 @@ int main(int argc, char** argv)
 int server(char* port)
 {
 	int server_fd = create_tcp_conn(port, NULL);
+	int ccount = 0;
 
 	/* listen for incoming connections */
 	listen(server_fd, MAX_BACK_LOG);
 
 	// loop for client connections
 	while(1){
-		int conn_fd;
-		if ((conn_fd = accept(server_fd, (struct sockaddr*) NULL, NULL)) < 0){
+		int client_fd;
+		if ((client_fd = accept(server_fd, (struct sockaddr*) NULL, NULL)) < 0){
 			perror("Accept error");
 			return -1;
 		}
 
 		// construct new client connection struct
 		client_conn* c_conn = new client_conn;
-		c_conn->client_fd = conn_fd;
+		c_conn->conn_num = ccount;
+		c_conn->client_fd = client_fd;
 		c_conn->host_fds = new map<string, int>;
+		ccount++;
 
 		// dispatch worker thread to handle connection
 		pthread_t worker;
@@ -104,6 +110,169 @@ int server(char* port)
 	pthread_exit(NULL);
 
 	return 0;
+}
+
+void* handle_client_conn(void* conn_ptr) {
+	client_conn* conn = (client_conn*) conn_ptr;
+	int client_fd = conn->client_fd;
+	int rcount = 0;
+
+	/* debug */
+	if(1) {
+		cout << "=============================" << endl;
+		cout << "NEW CONNECTION" << endl;
+		cout << "-----------------------------" << endl;
+		cout << "Connection No. " << conn->conn_num << endl;
+		cout << "Socket No. " << conn->client_fd << endl;
+		cout << "=============================" << endl;
+	}
+
+	/* loop for client messages */
+	while (1) {
+		//TODO how long is HTTP requst?
+		char rcv_buf[RCV_BUF_SIZE]; // receive data buffer
+		ssize_t rcv_len; // receive data length
+
+		/* receive message from client */
+		rcv_len = recv(client_fd, (void*) rcv_buf, sizeof(rcv_buf), 0);
+
+		if (rcv_len == 0) { // client has closed the connection
+			cout << "Closing Connection No. " << conn->conn_num << endl;
+			break;
+		} else if (rcv_len == -1) { // receive error
+			perror("Receive error");
+			continue;
+		} else { // handle HTTP request
+			string* rcv_str = new string(rcv_buf);
+			client_request* c_req = new client_request;
+			c_req->req_num = rcount;
+			c_req->data = rcv_str;
+			c_req->c_conn = conn;
+			rcount++;
+
+			//TODO how to handle the case of two requests to same host?
+			pthread_t worker;
+			pthread_create(&worker, NULL, handle_client_request, (void*) c_req);
+		}
+	}
+
+	/* close socket and free connection struct */
+	close(client_fd);
+	delete conn->host_fds;
+	delete conn;
+
+	pthread_exit(NULL);
+}
+
+void* handle_client_request(void* req_ptr) {
+	client_request* req = (client_request*) req_ptr;
+	client_conn* conn = req->c_conn;
+	string* request = req->data;
+
+	/* debug */
+	if(1) {
+		cout << "=============================" << endl;
+		cout << "NEW REQUEST : " << req->req_num << endl;
+		cout << "-----------------------------" << endl;
+		cout << "Connection No. " << conn->conn_num << endl;
+		cout << "Socket No. " << conn->client_fd << endl;
+		cout << "-----------------------------" << endl;
+		cout << *request << endl;
+		cout << "=============================" << endl;
+	}
+
+	/* return if not GET request */
+	if(request->find("GET") != 0) {
+		cout << "Ignoring non-GET request." << endl;
+		return NULL;
+	}
+
+	/* parse get request */
+	get_request* greq = parse_get_request(request);
+
+	/* check if requested page is cached */
+	// TODO
+
+	/* get host socket */
+	int host_fd;
+	string host_addr = *greq->host;
+	map<string, int> host_map = *conn->host_fds;
+	// TODO lock the host map
+
+	if(host_map.find(host_addr) == host_map.end()) { // no connection to host exists
+		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
+		host_map[host_addr] = host_fd; // add connection to host map
+		//pthread_t worker;
+		//cout << "creating listener" << endl;
+		//pthread_create(&worker, NULL, handle_host_downstream, (void*) conn);
+	} else { // connection to host exists
+		host_fd = host_map[host_addr];
+	}
+
+	/* forward request to host */
+	if(send(host_fd, request->c_str(), request->length(), 0) < 0) {
+		perror("Request forwarding error");
+	}
+
+	forward_data(host_fd, conn->client_fd);
+
+	close(host_fd);
+}
+
+void* handle_host_downstream(void* host_dstream) {
+	host_downstream* dstream = (host_downstream*) host_dstream;
+	int host_fd = dstream->host_fd;
+	int client_fd = dstream->c_conn->client_fd;
+
+	forward_data(host_fd, client_fd);
+
+	close(host_fd);
+}
+
+void* forward_data(int source_fd, int dest_fd) {
+	char fwd_buf[RCV_BUF_SIZE];
+	ssize_t fwd_len;
+
+	while((fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0)) > 0) {
+		send(dest_fd, fwd_buf, fwd_len, 0);
+	}
+}
+
+get_request* parse_get_request(string* request) {
+	/* parse operation type */
+	size_t first_space = request->find(" ");
+	string op = request->substr(0, first_space);
+
+	/* parse page */
+	size_t second_space = request->find(" ", first_space + 1);
+	string page = request->substr(first_space + 1, second_space - first_space - 1);
+
+	/* parse version */
+	size_t first_crlf = request->find("\n");
+	string version = request->substr(second_space + 1, first_crlf - second_space - 1);
+
+	/* parse host */
+	string host_tag = "Host: ";
+	size_t host_start = request->find(host_tag) + host_tag.length();
+	size_t host_end = request->find("\n", host_start);
+	string host = request->substr(host_start, host_end - host_start - 1);
+
+	/* debug printing */
+	if(DEBUG) {
+		cout << "Op: " << op << endl;
+		cout << "Page: " << page << endl;
+		cout << "Version: " << version << endl;
+		cout << "Host: " << host << endl;
+	}
+
+	/* generate get_request struct */
+	get_request* greq = new get_request;
+	greq->op = new string(op);
+	greq->page = new string(page);
+	greq->version = new string(version);
+	greq->host = new string(host);
+
+	return greq;
 }
 
 int create_tcp_conn(char* port, const char* addr) {
@@ -122,9 +291,7 @@ int create_tcp_conn(char* port, const char* addr) {
 	/* get address info */
 	int code;
 	if ((code = getaddrinfo(addr, port, &ai_hints, &ai_list)) != 0) {
-		cout << "addr: " << addr << endl;
-		cout << gai_strerror(code) << endl;
-		perror("Get address info error");
+		cout << "Get address info error: " << gai_strerror(code) << endl;
 		return -1;
 	}
 
@@ -164,143 +331,3 @@ int create_tcp_conn(char* port, const char* addr) {
 
 	return sockfd_ls;
 }
-
-
-void* handle_client_conn(void* c_conn_ptr) {
-	client_conn* c_conn = (client_conn*) c_conn_ptr;
-	int client_fd = c_conn->client_fd;
-
-	/* loop for client messages */
-	while (1) {
-		//TODO how long is HTTP requst?
-		char rcv_buf[RCV_BUF_SIZE]; // receive data buffer
-		ssize_t rcv_len; // receive data length
-
-		/* receive message from client */
-		rcv_len = recv(client_fd, (void*) rcv_buf, sizeof(rcv_buf), 0);
-
-		if (rcv_len == 0) { // client has closed the connection
-			break;
-		} else if (rcv_len == -1) { // receive error
-			perror("Receive error");
-			continue;
-		} else { // handle HTTP request
-			string* rcv_str = new string(rcv_buf);
-			request* req = new request;
-			req->data = rcv_str;
-			req->c_conn = c_conn;
-
-			//TODO how to handle the case of two requests to same host?
-			pthread_t worker;
-			pthread_create(&worker, NULL, handle_request, (void*) req);
-		}
-	}
-
-	/* close socket and free connection struct */
-	close(client_fd);
-	delete c_conn->host_fds;
-	delete c_conn;
-
-	pthread_exit(NULL);
-}
-
-void* handle_request(void* req_ptr) {
-	request* req = (request*) req_ptr;
-	client_conn* c_conn = req->c_conn;
-	string* request = req->data;
-	cout << *request << endl;
-
-	/* return if not GET request */
-	if(request->find("GET") != 0) {
-		cout << "Ignoring non-GET request." << endl;
-		return NULL;
-	}
-
-	/* parse get request */
-	get_request* greq = parse_get_request(request);
-
-	/* check if requested page is cached */
-	// TODO
-
-	/* get host socket */
-	int host_fd;
-	string host_addr = *greq->host;
-	map<string, int> host_map = *c_conn->host_fds;
-
-	if(host_map.find(host_addr) == host_map.end()) { // no connection to host exists
-		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
-		host_map[host_addr] = host_fd; // add connection to host map
-		//pthread_t worker;
-		//cout << "creating listener" << endl;
-		//pthread_create(&worker, NULL, handle_host_downstream, (void*) c_conn);
-	} else { // connection to host exists
-		host_fd = host_map[host_addr];
-	}
-
-	/* forward request to host */
-	if(send(host_fd, request->c_str(), request->length(), 0) < 0) {
-		perror("Request forwarding error");
-	}
-
-	forward_data(host_fd, c_conn->client_fd);
-
-	close(host_fd);
-}
-
-void* handle_host_downstream(void* host_dstream) {
-	host_downstream* dstream = (host_downstream*) host_dstream;
-	int host_fd = dstream->host_fd;
-	int client_fd = dstream->c_conn->client_fd;
-
-	forward_data(host_fd, client_fd);
-
-	close(host_fd);
-}
-
-void* forward_data(int source_fd, int dest_fd) {
-	char fwd_buf[RCV_BUF_SIZE];
-	ssize_t fwd_len;
-
-	while((fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0)) > 0) {
-		send(dest_fd, fwd_buf, fwd_len, 0);
-	}
-}
-
-get_request* parse_get_request(string* request) {
-	/* parse operation type */
-	size_t first_space = request->find(" ");
-	string op = request->substr(0, first_space);
-	cout << "Op: " << op << endl;
-
-	/* parse page */
-	size_t second_space = request->find(" ", first_space + 1);
-	string page = request->substr(first_space + 1, second_space - first_space - 1);
-	cout << "Page: " << page << endl;
-
-	/* parse version */
-	size_t first_crlf = request->find("\n");
-	string version = request->substr(second_space + 1, first_crlf - second_space - 1);
-	cout << "Version: " << version << endl;
-
-	/* parse host */
-	string host_tag = "Host: ";
-	size_t host_start = request->find(host_tag) + host_tag.length();
-	size_t host_end = request->find("\n", host_start);
-	string host = request->substr(host_start, host_end - host_start - 1);
-	cout << "Host: " << host << endl;
-
-	/* generate get_request struct */
-	get_request* greq = new get_request;
-	greq->op = new string(op);
-	greq->page = new string(page);
-	greq->version = new string(version);
-	greq->host = new string(host);
-
-	return greq;
-}
-
-
-
-
-
-
