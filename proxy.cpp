@@ -37,7 +37,7 @@ typedef struct {
 } client_request;
 
 typedef struct {
-	int host_fd;
+	string *host_addr;
 	client_conn* c_conn;
 } host_downstream;
 
@@ -202,10 +202,15 @@ void* handle_client_request(client_request* req) {
 	if(host_map.find(host_addr) == host_map.end()) { // no connection to host exists
 		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
 		host_map[host_addr] = host_fd; // add connection to host map
-		//pthread_t worker;
-		//cout << "creating listener" << endl;
-		//pthread_create(&worker, NULL, handle_host_downstream, (void*) conn);
+
+		host_downstream *hds = new host_downstream;
+		hds->host_addr = greq->host;
+		hds->c_conn = conn;
+
+		pthread_t worker;
+		pthread_create(&worker, NULL, handle_host_downstream, (void*) hds);
 	} else { // connection to host exists
+		cout << "Host in map." << endl;
 		host_fd = host_map[host_addr];
 	}
 
@@ -213,26 +218,60 @@ void* handle_client_request(client_request* req) {
 	if(send(host_fd, request->c_str(), request->length(), 0) < 0) {
 		perror("Request forwarding error");
 	}
-
-	forward_data(host_fd, conn->client_fd);
 }
 
-void* handle_host_downstream(void* host_dstream) {
+void* handle_host_downstream(void *host_dstream) {
 	host_downstream* dstream = (host_downstream*) host_dstream;
-	int host_fd = dstream->host_fd;
+	string host_addr = *dstream->host_addr;
 	int client_fd = dstream->c_conn->client_fd;
+	map<string, int> host_map = *dstream->c_conn->host_fds;
+	int host_fd = host_map[host_addr];
 
+	/* forward data from host to client */
 	forward_data(host_fd, client_fd);
 
+	/* close host socket */
 	close(host_fd);
+
+	/* remove host from map */
+	host_map.erase(host_addr);
 }
 
 void* forward_data(int source_fd, int dest_fd) {
 	char fwd_buf[RCV_BUF_SIZE];
 	ssize_t fwd_len;
+	struct timeval tv;
+	fd_set read_fds;
+	fd_set write_fds;
+	fd_set except_fds;
+	int num_fds;
 
-	while((fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0)) > 0) {
-		send(dest_fd, fwd_buf, fwd_len, 0);
+	tv.tv_sec = 2;
+	tv.tv_usec = 500000;
+
+	/* setup read fd set */
+	FD_ZERO(&read_fds);
+	FD_SET(source_fd, &read_fds);
+
+	while(1) {
+		/* wait for something to read on source socket */
+		select(source_fd + 1, &read_fds, NULL, NULL, &tv);
+
+		if(FD_ISSET(source_fd, &read_fds)) {
+			fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0);
+
+			if(fwd_len = -1) {
+				cout << "Host receive error." << endl;
+				break;
+			} else if(fwd_len == 0) {
+				cout << "Host closed connection." << endl;
+				break;
+			}
+
+			/* forward data to destination */
+			send(dest_fd, fwd_buf, fwd_len, 0);
+
+		}
 	}
 }
 

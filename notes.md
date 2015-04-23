@@ -1,5 +1,6 @@
 TODO
 - error handling
+- way to kill downstream handling thread
 
 Notes
 - Browser connection/request characterization
