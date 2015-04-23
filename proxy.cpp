@@ -104,7 +104,7 @@ int server(char* port)
 			cout << "NEW CONNECTION" << endl;
 
 			/* construct new client connection struct */
-			client_conn* c_conn = new client_conn;
+			c_conn = new client_conn;
 			c_conn->conn_num = ccount;
 			c_conn->client_fd = client_fd;
 			c_conn->host_fds = new map<string, int>;
@@ -118,7 +118,7 @@ int server(char* port)
 			conn_map->operator[](client_fd) = c_conn;
 			pthread_mutex_unlock(&cmap_lock);
 
-		} else { // connection exists
+		} else { // existing connection
 			cout << "EXISTING CONNECTION" << endl;
 			c_conn = conn_map->operator[](client_fd);
 		}
@@ -151,7 +151,6 @@ void* handle_client_conn(void* conn_ptr) {
 
 	/* loop for client messages */
 	while (1) {
-		//TODO how long is HTTP requst?
 		char rcv_buf[RCV_BUF_SIZE]; // receive data buffer
 		ssize_t rcv_len; // receive data length
 

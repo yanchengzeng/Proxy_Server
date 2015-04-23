@@ -1,3 +1,4 @@
+NEW CONNECTION
 =============================
 NEW CONNECTION
 -----------------------------
@@ -10,41 +11,30 @@ NEW REQUEST : 0
 Connection No. 0
 Socket No. 4
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/ HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/ HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
 Connection: keep-alive
 
 
 =============================
 Sending to : 6
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
+NEW CONNECTION
 =============================
 NEW CONNECTION
 -----------------------------
 Connection No. 1
 Socket No. 5
+=============================
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 2
+Socket No. 7
 =============================
 =============================
 NEW REQUEST : 0
@@ -52,609 +42,218 @@ NEW REQUEST : 0
 Connection No. 1
 Socket No. 5
 -----------------------------
-GET http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=ext.gadget.DRN-wizard%2CReferenceTooltips%2Ccharinsert%2Cfeatured-articles-links%2CrefToolbar%2Cswitcher%2Cteahouse%7Cext.rtlcite%2Cwikihiero%2CwikimediaBadges%7Cext.uls.nojs%7Cext.visualEditor.viewPageTarget.noscript%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cmw.PopUpMediaTransform%7Cskins.vector.styles%7Cwikibase.client.init&only=styles&skin=vector&* HTTP/1.1
-Host: bits.wikimedia.org
+GET http://www.cs.duke.edu/~bmm/styles/simple.css HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: text/css,*/*;q=0.1
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
-==========================================================
-
+=============================
 NEW CONNECTION
+=============================
+NEW REQUEST : 0
 -----------------------------
-Connection No. 2
+=============================Connection No. 2
 Socket No. 7
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/libs/jquery-1.4.2.min.js HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
 =============================
-=============================
+NEW CONNECTION
+
 NEW CONNECTION
 -----------------------------
 Connection No. 3
 Socket No. 8
 =============================
-=============================
+=============================NEW CONNECTION=============================
 NEW REQUEST : 0
 -----------------------------
 Connection No. 3
 Socket No. 8
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/load.php HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/libs/jquery.imgpreload.min.js HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: */*
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
 =============================
+
+
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
 =============================
-NEW REQUEST : 0
+=============================NEW CONNECTION
 -----------------------------
-Connection No. 2
-Socket No. 7
------------------------------
-GET http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=site&only=styles&skin=vector&* HTTP/1.1
-Host: bits.wikimedia.org
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Connection: keep-alive
-
-
+Connection No. 7
+Socket No. 15
 =============================
 =============================
 NEW CONNECTION
 -----------------------------
 Connection No. 5
-Socket No. 11
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 5
-Socket No. 11
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/load(2).php HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 4
-Socket No. 10
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 4
-Socket No. 10
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/load(1).php HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 6
 Socket No. 12
 =============================
-=============================
+
+NEW CONNECTION
+-----------------------------
+Connection No. 6=============================
 NEW CONNECTION
 -----------------------------
 Connection No. 8
-Socket No. 18
+Socket No. 16
 =============================
-=============================
-NEW CONNECTION
 -----------------------------
-Connection No. 9
-Socket No. 19
+Connection No. 4
+Socket No. 9
+=============================
+
+Socket No. 14
 =============================
 =============================
-NEW CONNECTION
+NEW REQUEST : 0
+-----------------------------
+Connection No. 5
+Socket No. 12
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/MuseoSlab500/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 4
+Socket No. 9
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/SovbaRegular/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 6
+Socket No. 14
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/CallunaSansRegular/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+NEW REQUEST : 0
 -----------------------------
 Connection No. 7
-Socket No. 17
+Socket No. 15
+-----------------------------
+GET http://fonts.googleapis.com/css?family=Calligraffitti HTTP/1.1
+Host: fonts.googleapis.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
 =============================
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Sending to : 16
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 8
+Socket No. 16
+-----------------------------
+GET http://fonts.googleapis.com/css?family=Shadows+Into+Light HTTP/1.1
+Host: fonts.googleapis.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Sending to : 11
 Sending to : 13
-Sending to : 9
-Sending to : 15
-Sending to : 14
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-Before send to fd 8
-After send to fd 4
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-Before send to fd 11
-After send to fd 11
-Before send to fd 4
-After send to fd 4
-Before send to fd Before send to fd 4
-11
-After send to fd 4
-After send to fd 11
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-Before send to fd 10
-After send to fd 10
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 10
-After send to fd 10
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 10
-After send to fd 10
-Before send to fd 4
-After send to fd 4
-Before send to fd 10
-After send to fd 10
-Before send to fd 4
-After send to fd 4
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 5
-After send to fd 5
-Before send to fd 5
-After send to fd 5
-Before send to fd 5
-After send to fd 5
-Before send to fd 5
-After send to fd 5
-Before send to fd 5
-After send to fd 5
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-Before send to fd 10
-After send to fd 10
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 10
-After send to fd 10
-Before send to fd 11
-After send to fd 11
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
+Sending to : 18
+Sending to : 20
+Sending to : Sending to : 10
+Sending to : 22
+Sending to : 19
+21
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 2
+Socket No. 7
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home3b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 11
 =============================
 NEW REQUEST : 1
 -----------------------------
 Connection No. 0
 Socket No. 4
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/load(3).php HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/data/photos/personal/bruce--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
@@ -664,1718 +263,803 @@ Sending to : 6
 =============================
 NEW REQUEST : 1
 -----------------------------
-Connection No. 5
-Socket No. 11
+Connection No. 1
+Socket No. 5
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/load(4).php HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/data/photos/personal/bnp--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
 =============================
 Host in map.
-Sending to : 15
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 8
-Socket No. 18
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/240px-Boundless_Informant_data_collection.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 9
-Socket No. 19
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-US-CentralSecurityService-Seal.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 6
-Socket No. 12
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/16px-Portal-puzzle.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-==========================================================
-NEW REQUEST : 0
------------------------------
-Connection No. 7
-Socket No. 17
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/80px-National_Security_Agency.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 11
-Socket No. 22
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 11
-=============================
-Socket No. NEW CONNECTION
------------------------------
-Connection No. 22
-Socket No. 36
-=============================
-=============================
+Sending to : 10
 =============================
 NEW REQUEST : 1
 -----------------------------
-Connection No. 4
-Socket No. 10
+Connection No. 6
+NEW CONNECTION
+=============================
+NEW REQUEST : 1
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-2010-05-14-USCYBERCOM_Logo.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
+Connection No. 5
+Socket No. 12
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/images/duke-univ-crest.png HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
 =============================
 Host in map.
-Sending to : 13
-=============================22
+Sending to : 18
+=============================Socket No. 14
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-US-FBI-ShadedSeal.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-1-exc--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
-==========================================================
-NEW CONNECTION
------------------------------
-Connection No. 18
-Socket No. 31
 =============================
+Host in map.
+Sending to : 20
 =============================
-NEW CONNECTION
+NEW REQUEST : 1
 -----------------------------
-Connection No. =============================16
-NEW CONNECTION
+Connection No. 8
+Socket No. 16
 -----------------------------
-Connection No. 24
-Socket No. 38
-=============================
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/pgh--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
 
+
+=============================
 =============================
 NEW REQUEST : 1
 -----------------------------
 Connection No. 3
 Socket No. 8
 -----------------------------
-GET http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=jquery%2Cmediawiki&only=scripts&skin=vector&version=20150415T205722Z HTTP/1.1
-Host: bits.wikimedia.org
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home3b--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 13
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 4
+Socket No. 9
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/personal/boys-in-a-tub--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 19
+
+NEW REQUEST : 1
+-----------------------------
+Connection No. 7
+Socket No. 15
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base2b--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 16
+Socket No. 30
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 16
+Socket No. 30
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-3-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 12
+Socket No. 26
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 12
+Socket No. 26
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna1b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 14
+Socket No. 28
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 14
+Socket No. 28
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home1b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+==========================================================
+NEW CONNECTION
+-----------------------------
+Connection No. 9
+Socket No. 17
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 9
+Socket No. 17
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/setup--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 15
+Socket No. 29
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 15
+Socket No. 29
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-2-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 11
+Socket No. 25
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 11
+Socket No. 25
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/wavsergraph--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 13
+Socket No. 27
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 13
+Socket No. 27
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna4b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 10
+Socket No. 23
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 10
+Socket No. 23
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/ethsergraph--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Sending to : 32
+Sending to : 24
+Sending to : 33
+Sending to : 35
+Sending to : 34
+Sending to : 36
+Sending to : 37
+Sending to : 38
+Sending to : 39
+Sending to : 40
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 0
+Socket No. 4
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/quad--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 e
 
 
 =============================
-
-NEW CONNECTION
------------------------------
-Connection No. 12
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 1
-Socket No. 5
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-Padlock-silver.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-t.init&only=styles&skin=vector&* HTTP/1.1
-Host: bits.wikimedia.org
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 27
-Socket No. 41
-Before send to fd 4
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 15
-Socket No. 27
-=============================
-=============================
-=============================NEW REQUEST : 0
------------------------------
-Connection No. 15
-Socket No. 27
-
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/23px-Flag_of_Canada.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 17
-Socket No. 30
-=============================
-After send to fd 4
-
-NEW REQUEST : 2
------------------------------
-Connection No. 0
-Socket No. 4
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/230px-DigiGes_PRISM_Yes_we_scan_-_Demo_am_Checkpoint_Charlie_June_2013.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================Host in map.
+Host in map.
 Sending to : 6
 =============================
-NEW CONNECTION
+NEW REQUEST : 2
 -----------------------------
-Connection No. 19
-Socket No. 32
-=============================
-Socket No. =============================
-23NEW REQUEST : 0
-NEW REQUEST : -----------------------------
-Connection No. 19
-Socket No. 32
+Connection No. 5
+Socket No. 12
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/23px-Flag_of_France.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/bruce-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
 =============================
+Host in map.
+Sending to : 18
 =============================
-NEW CONNECTION
------------------------------
-Connection No. 20
-Socket No. 33
-=============================
-Socket No. =============================28
-
-=============================
-==========================================================
-NEW REQUEST : NEW CONNECTION
------------------------------
-Connection No. 23
-Socket No. 37
-=============================
-
-=============================
-=============================NEW REQUEST : 
-0
------------------------------
-Connection No. 20
-Socket No. 33
-0-----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/23px-Flag_of_Germany.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 18
-Socket No. 31
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/23px-Flag_of_New_Zealand.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-0
-
------------------------------
-Connection No. 16
-Socket No. 28
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/23px-Flag_of_the_United_Kingdom.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 21
-Socket No. 34
-=============================
-=======================================================================================
-NEW CONNECTION
------------------------------
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 13
-Socket No. 24
-=============================
-
-NEW REQUEST : 0=============================
-
-NEW REQUEST : 0
------------------------------
-Connection No. 17
-Socket No. 30
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/23px-Flag_of_Australia.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 13
-Socket No. 24
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-Seal_of_the_United_States_Department_of_Homeland_Security.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-
------------------------------
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 10
-Socket No. 20
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 10
-Socket No. 20
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-Seal_of_the_United_States_Department_of_Justice.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
------------------------------
-Connection No. 21
-Socket No. 34
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-Edward_Snowden%27s_former_house_in_Waipahu,_Hawaii.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================Connection No. 14
-Socket No. 26
-=============================
-=============================
-=============================
-
-NEW REQUEST : 1
+NEW REQUEST : 2
 -----------------------------
 Connection No. 2
 Socket No. 7
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-Edward_Snowden-2.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna2b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-
-NEW REQUEST : 0
------------------------------
-Connection No. 24
-Socket No. 38
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-NSA_Muscular_Google_Cloud.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-NEW REQUEST : 0NEW REQUEST : 0
------------------------------
-Connection No. 23
-Socket No. 37
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/170px-Glenn_greenwald_portrait_transparent.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 12
-Socket No. 23
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-CIA.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-Connection No. 22
-
------------------------------
-Connection No. 14
-Socket No. 26
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/20px-IAO-logo.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-
-NEW CONNECTION
------------------------------
-Connection No. 26
-Socket No. 40
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 25=============================
-Socket No. 36
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/170px-Laura_Poitras_2014.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-
-Socket No. 39
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 25==========================================================
-
-NEW REQUEST : 0
------------------------------
-Connection No. 26
-Socket No. 
-40
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-Is_Snowden_a_Hero-_SnowdenHK_%E9%A6%99%E6%B8%AF%E8%81%B2%E6%8F%B4%E6%96%AF%E8%AB%BE%E7%99%BB%E9%81%8A%E8%A1%8C_Hong_Kong_Rally_to_Support_Snowden_SML.20130615.7D.42298.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 27
-Socket No. 41
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-Edward_Joseph_Snowden_-_Arrival_at_Sheremetyevo_International_Airport_02.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-Socket No. 39
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px--PRISM_-_Snowden_Interview_-_Laura_Poitras_HQ.webm.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Sending to : 25
-Sending to : 21
-Before send to fd 4
-Sending to : 43
-Sending to : 29
-Sending to : 35
-Sending to : 44
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Sending to : 45
-Sending to : 46
-Sending to : 49
-Sending to : 52
-Sending to : 61
-Sending to : 50
-Sending to : 60
-Sending to : 53
-Sending to : 55
-Sending to : 58
-Sending to : 56
-Sending to : 51
-Sending to : 59
-Sending to : 48
-Sending to : 62
-Sending to : 54
-Sending to : 47
-Sending to : 57
-Sending to : 63
-=============================
-NEW REQUEST : 2
------------------------------
-Connection No. 5
-Socket No. 11
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/170px-Edward-Snowden-FOPF-2014.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 
 =============================
 Host in map.
-Sending to : 15
+Sending to : 11
 =============================
 NEW REQUEST : 2
 -----------------------------
 Connection No. 4
-Socket No. 10
+Socket No. 9
 -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-Edward_Snowden%27s_Surprise_Appearance_at_TED.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna3b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
 Accept: image/png,image/*;q=0.8,*/*;q=0.5
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 13
-Before send to fd 19
-=============================
-NEW REQUEST : 3
------------------------------
-Connection No. 0
-Socket No. 4
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-seek=65-CITIZENFOUR_(2014)_trailer.webm.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-onnection: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 6
-After send to fd 19
-Before send to fd 19
-After send to fd 19
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 9
-Socket No. 19
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/21px-P_vip.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-onnection: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 25
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 5
-Before send to fd 22
-After send to fd 22
-Before send to fd 22
-After send to fd 22
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-=============================
-NEW REQUEST : 2
------------------------------
-Connection No. 1
-Socket No. 5
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/24px-Free-speech-flag.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-init&only=styles&skin=vector&* HTTP/1.1
-Host: bits.wikimedia.org
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Connection: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 45
-After send to fd 5
-=============================Host closed connection.
-NEW REQUEST : 1
------------------------------
-Connection No. 11
-Socket No. 22
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/21px-Great_Seal_of_the_United_States_(obverse).svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-
-Host in map.
-Sending to : 43
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-Before send to fd 12
-After send to fd 12
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 6
-Socket No. 12
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/21px-Computer-aj_aj_ashton_01.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 29
-=============================
-NEW REQUEST : 3
------------------------------
-Connection No. 5
-Socket No. 11
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/16px-Fbi_duquesne.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-eep-alive
-
-
-=============================
-Host in map.
-Sending to : 15
-Before send to fd 10
-Before send to fd 4
-After send to fd 4
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 17
-4
-After send to fd 17
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Before send to fd 4
-After send to fd 4
-Host closed connection.
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-After send to fd 17
-Before send to fd 17
-Before send to fd 19
-After send to fd 19
-Before send to fd 19
-After send to fd 19
-Host closed connection.
-Before send to fd 39
-After send to fd 39
-Before send to fd 39
-After send to fd 39
-Before send to fd 39
-After send to fd 39
-Before send to fd 39
-=============================
-NEW REQUEST : 2Before send to fd 
-18
------------------------------
-Connection No. 9
-Socket No. 19
-After send to fd -----------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/25px-Wikinews-logo.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-n: keep-alive
-
-
-=============================
-After send to fd After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-17
-Before send to fd 17
-After send to fd 17
-39
-Before send to fd 39
-After send to fd 39
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 7
-Socket No. 17
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/21px-Wikiquote-logo.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
--alive
-
-
-=============================
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 25
-Socket No. 39
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/24px-Wikisource-logo.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-3Av4
-Connection: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 35
-Host in map.
-Sending to : 50
-Before send to fd 18
-After send to fd 18
-Before send to fd 12
-Before send to fd 18
-Before send to fd 11
-After send to fd 11
-Host closed connection.
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 8
-Socket No. 18
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/25px-Wikidata-logo.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-nection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 4
------------------------------
-Connection No. 5
-Socket No. 11
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-University_of_Glasgow_Gilbert_Scott_Building_-_Feb_2008.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-Before send to fd =============================22
-After send to fd 18
-After send to fd 22
-Before send to fd 22
-After send to fd 22Host in map.
-Sending to : 
-21=============================
-NEW REQUEST : 2
------------------------------
-
-
-After send to fd 12
-Connection No. 6
-Socket No. 12
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/18px-Commons-logo.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-ep-alive
-
-
-=============================
-Host in map.
-Sending to : 29
-=============================
-NEW REQUEST : 3
------------------------------
-Connection No. 4
-Socket No. 10
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/16px-Folder_Hexagonal_Icon.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-ction: keep-alive
-
-
-=============================
-Host in map.
-Sending to : 13
-=============================
-=============================
-NEW CONNECTION
------------------------------
-Connection No. 29
-Socket No. 25
-=============================
-NEW CONNECTION
------------------------------
-=============================
-NEW REQUEST : Connection No. 0
-28-----------------------------
-
-Socket No. Connection No. 29
-Socket No. 25
------------------------------
-42GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px-Whitehouse_pardon_Edward_Snowden_petition.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-
-=============================
-=============================
-=============================
-NEW REQUEST : 0
------------------------------
-Connection No. 28
-Socket No. 42
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/220px--Edward_Snowden_speaks_about_everything.webm.jpg HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-
-=============================
-=============================
-NEW REQUEST : 4
------------------------------
-Connection No. 0
-Socket No. 4
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/12px-Commons-logo.svg.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-nnection: keep-alive
-
-onnection: keep-alive
-
-
-=============================
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-Before send to fd 39
-After send to fd 39
-Before send to fd 39
-After send to fd 39
-Host closed connection.
-Before send to fd 32
-After send to fd 32
-=============================
-NEW REQUEST : 1
------------------------------
-Connection No. 19
-Socket No. 32
------------------------------
-After send to fd GET http://skylynx.cs.duke.edu/web/wiki/index_files/wikimedia-button.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-ive
-
-
-40=============================
-Host in map.
-Sending to : Sending to : 466
-
-
-Before send to fd Before send to fd 1740
-
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-=============================
-NEW REQUEST : 2
------------------------------
-Connection No. 7
-Socket No. 17
------------------------------
-GET http://skylynx.cs.duke.edu/web/wiki/index_files/poweredby_mediawiki_88x31.png HTTP/1.1
-Host: skylynx.cs.duke.edu
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: image/png,image/*;q=0.8,*/*;q=0.5
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Cookie: uls-previous-languages=%5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
+Referer: http://www.cs.duke.edu/~bmm/
 Connection: keep-alive
 
 live
 
 
 =============================
-After send to fd 17
 Host in map.
-Sending to : Before send to fd 3517
+Sending to : 19
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 3
+Socket No. 8
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home2b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
 
-After send to fd 17
+
+=============================
+Host in map.
+Sending to : 13
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 6
+Socket No. 14
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home4b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+
+
+=============================
+Host in map.
+Sending to : 20
+=============================
+NEW REQUEST : 3
+-----------------------------
+Connection No. 0
+Socket No. 4
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-1-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 6
 Host closed connection.
-Before send to fd 24
-After send to fd 24
-Before send to fd 24
-After send to fd 24
-Before send to fd 12
-After send to fd 12
-Host closed connection.
-Before send to fd 18
-After send to fd 18
-Host closed connection.
+=============================
+NEW REQUEST : 3
+-----------------------------
+Connection No. 5
+Socket No. 12
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base2b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+
+
+=============================
+Host in map.
+Sending to : 18
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 1
+Socket No. 5
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base4b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+
+=============================
+Host in map.
+Sending to : 10
+=============================
+NEW REQUEST : 3
+-----------------------------
+Connection No. 2
+Socket No. 7
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/wean-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+
+=============================
+Host in map.
+Sending to : 11
+NEW CONNECTION
+NEW CONNECTION
 =============================
 NEW CONNECTION
 -----------------------------
-Connection No. 31
-Socket No. 21
+Connection No. 17
+Socket No. 31
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 17
+Socket No. 31
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base1b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 18
+Socket No. 6
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 18
+Socket No. 6
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base3b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW REQUEST : 3
+-----------------------------
+Connection No. 4
+Socket No. 9
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/phipps--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+
+live
+
+
+=============================
+Host in map.
+Sending to : 19
+Host closed connection.
+Closing Connection No. 4
+=============================
+NEW REQUEST : 3
+-----------------------------
+Connection No. 6
+Socket No. 14
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/craigst-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 20
+Sending to : 9
+Sending to : 19
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 19
+Socket No. 41
+=============================
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 21
+Socket No. 43
+=============================
+=============================NEW CONNECTION
+==========================================================
+NEW CONNECTION
+-----------------------------
+Connection No. 22
+Socket No. 44
+=============================
+
+NEW CONNECTION
+-----------------------------
+Connection No. 23
+Socket No. 45
+=============================
+=============================
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 20
+Socket No. 42
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 28
+NEW CONNECTION
+-----------------------------
+Connection No. 24
+Socket No. 46
+=============================
+=============================
+NEW CONNECTION
+
+NEW CONNECTION
+-----------------------------
+Connection No. 25
+Socket No. 47
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 26
+Socket No. 48
 =============================
 =============================
 NEW CONNECTION
 -----------------------------
 Connection No. 30
-Socket No. 45
+Socket No. 52
 =============================
-Before send to fd 10
-After send to fd 10
-Host closed connection.
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 23
-Before send to fd After send to fd 23
-40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 23
-After send to fd 23
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 38
-After send to fd 38
-Before send to fd 32
-After send to fd 32
-Before send to fd 32
-After send to fd 32
-Host closed connection.
-Sending to : 13
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd Before send to fd 741
-After send to fd 7
-
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-Sending to : 15
-Sending to : 46
-Sending to : 35
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 7
-After send to fd 7
-Before send to fd 41
-After send to fd 41
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-After send to fd 36
-Before send to fd 36
-Before send to fd 8
-After send to fd 36
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Before send to fd 8
-After send to fd 8
-Host closed connection.
-Before send to fd Before send to fd 4130
-
-After send to fd 30
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-Before send to fd 41
-After send to fd 41
-=============================
-NEW REQUEST : 4
 -----------------------------
-Connection No. 4
-Socket No. 10
------------------------------
-GET http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=mw.PopUpMediaTransform&only=scripts&skin=vector&* HTTP/1.1
-Host: bits.wikimedia.org
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Connection: keep-alive
-
-%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-ction: keep-alive
-
-
+Connection No. Socket No. 50
 =============================
-Before send to fd 28
-After send to fd 28
-Sending to : 44
+27
+Socket No. 49
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 29
+Socket No. 51
+=============================
+NEW CONNECTION
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 31
+Socket No. 53
+=============================
 =============================
 NEW CONNECTION
 -----------------------------
 Connection No. 33
-Socket No. 50
+Socket No. 55
 =============================
+NEW CONNECTION
 =============================
 NEW CONNECTION
 -----------------------------
 Connection No. 32
-Socket No. 29
+Socket No. 54
 =============================
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-After send to fd 10
-Before send to fd 10
-Connection No. 4 recHost closed connection.
-Closing Connection No. 4
 =============================
-NEW REQUEST : 1
+NEW CONNECTION
 -----------------------------
-Connection No. 26
-Socket No. 40
+Connection No. 34
+Socket No. 56
+=============================
+NEW CONNECTION
+NEW CONNECTION=============================
+
+NEW CONNECTION
 -----------------------------
-GET http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=ext.cirrusSearch.loggingSchema%7Cext.cite%2CeventLogging%2CnavigationTiming%7Cext.eventLogging.subscriber%7Cext.gadget.DRN-wizard%2CReferenceTooltips%2Ccharinsert%2Cfeatured-articles-links%2CrefToolbar%2Cswitcher%2Cteahouse%7Cext.imageMetrics.loader%7Cext.uls.eventlogger%2Cinterlanguage%7Cext.visualEditor.targetLoader%7Cext.wikimediaEvents.statsd%7Cjquery.checkboxShiftClick%2CgetAttrs%2Chashchange%2Chidpi%2ChighlightText%2CmakeCollapsible%2Cmw-jump%2Cplaceholder%2CscrollTo%2Csuggestions%7Cmediawiki.action.view.postEdit%7Cmediawiki.cookie%2Chidpi%2CsearchSuggest%2Ctemplate%2Ctoc%7Cmediawiki.page.ready%7Cmediawiki.ui.icon%7Cmmv.Config%2CHtmlUtils%2Cbootstrap%7Cmmv.bootstrap.autostart%7Cmmv.logging.ActionLogger%2CDurationLogger%2CLogger%7Coojs%7Cschema.NavigationTiming%2CSaveTiming%2CSearch%2CUniversalLanguageSelector&skin=vector&version=20150418T235519Z&* HTTP/1.1
-Host: bits.wikimedia.org
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Connection: keep-alive
-
-
+Connection No. 35
+Socket No. 57
 =============================
 =============================
-NEW REQUEST : 2
+NEW CONNECTION
 -----------------------------
-Connection No. 8
-Socket No. 18
------------------------------
-GET http://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=site&only=scripts&skin=vector&* HTTP/1.1
-Host: bits.wikimedia.org
-User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://skylynx.cs.duke.edu/web/wiki/
-Connection: keep-alive
-
-5B%22en%22%5D; GeoIP=US%3ADurham%3A35.995399%3A-78.901901%3Av4
-Connection: keep-alive
-
-nection: keep-alive
-
-
+Connection No. 36
+Socket No. 58
 =============================
-Sending to : 44
-Sending to : 10
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
-Before send to fd 40
-After send to fd 40
-Before send to fd 40
-After send to fd 40
-Before send to fd 18
-After send to fd 18
-Before send to fd 40
-After send to fd 40
-Before send to fd 18
-After send to fd 18
-Before send to fd 18
-After send to fd 18
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW CONNECTION
+NEW CONNECTION
+-----------------------------
+Connection No. 37
+Socket No. 59
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 38
+Socket No. 60
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 39
+Socket No. 61
+=============================
+NEW CONNECTION
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 40
+Socket No. 62
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 41
+Socket No. 63
+=============================
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 42
+Socket No. 64
+=============================
 Host closed connection.
-Closing Connection No. 8
-Before send to fd 27
-After send to fd 27
-Before send to fd 26
-After send to fd 26
-Before send to fd 26
-After send to fd 26
-Before send to fd 31
-After send to fd 31
-Before send to fd 33
-After send to fd 33
-Before send to fd 20
-After send to fd 20
-Before send to fd 20
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-After send to fd 20
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 37
-After send to fd 37
-Before send to fd 42
-After send to fd 42
-Before send to fd 42
-After send to fd 42
-Before send to fd 42
-After send to fd 42
-Before send to fd 42
-After send to fd 42
-Before send to fd 42
-After send to fd 42
-Before send to fd 19
-After send to fd 19
-Before send to fd 19
-After send to fd 19
 Host closed connection.
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 34
-After send to fd 34
-Before send to fd 34
-After send to fd 34
-Before send to fd 34
-After send to fd 34
-Before send to fd 34
-After send to fd 34
-Before send to fd 34
-After send to fd 34
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-Before send to fd 34
-Before send to fd After send to fd 34
-Before send to fd 34
-After send to fd 34
-Before send to fd 34
-After send to fd Before send to fd After send to fd 434
-After send to fd 4
 Host closed connection.
-25
-Before send to fd 25
-11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-Before send to fd 11
-After send to fd 11
-After send to fd 25
-Before send to fd 25
+Host closed connection.
+Host closed connection.Host closed connection.
 
-After send to fd Before send to fd 34
-25
-After send to fd 34
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Before send to fd 25
-After send to fd 25
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Closing Connection No. 13
-Closing Connection No. 6
 Host closed connection.
 Host closed connection.
 Host closed connection.
@@ -2383,39 +1067,48 @@ Host closed connection.
 Host closed connection.
 Host closed connection.
 Host closed connection.
-Closing Connection No. 27
-Closing Connection No. 19
-Closing Connection No. 12
-Closing Connection No. 24
-Closing Connection No. 16
+Host closed connection.
 Closing Connection No. 30
-Closing Connection No. 25
-Closing Connection No. 31
-Closing Connection No. 17
+Closing Connection No. 38
+Closing Connection No. 36
+Closing Connection No. 27
+Closing Connection No. 8
+Closing Connection No. 24
 Closing Connection No. 22
-Closing Connection No. 11
-Closing Connection No. 32
-Closing Connection No. 2
-Closing Connection No. 33
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Closing Connection No. 15
-Closing Connection No. 14
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Host closed connection.
 Closing Connection No. 20
-Closing Connection No. 23
-Closing Connection No. 18
-Closing Connection No. 10
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Host closed connection.
-Closing Connection No. 28
-Closing Connection No. 21
+Closing Connection No. 37
+Closing Connection No. 31
+Closing Connection No. 14
+Closing Connection No. 11
+Closing Connection No. 6
 Closing Connection No. 29
+Closing Connection No. Closing Connection No. 35
+Closing Connection No. Closing Connection No. 16
+Closing Connection No. 41
+Closing Connection No. 7
+Closing Connection No. 40
+Closing Connection No. 1
+Closing Connection No. 2
+Closing Connection No. 21
+Closing Connection No. 32
+Closing Connection No. 13
 Closing Connection No. 5
-Closing Connection No. 0
+Closing Connection No. 34
+Closing Connection No. 12
+Closing Connection No. 42
+Closing Connection No. 3
+Closing Connection No. 23
+Closing Connection No. 15
+Closing Connection No. 28
+39
+Closing Connection No. 25
+Closing Connection No. 10
+Closing Connection No. 26
+33
+Closing Connection No. 19
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Closing Connection No. 9
+Closing Connection No. 17
+Closing Connection No. 18
