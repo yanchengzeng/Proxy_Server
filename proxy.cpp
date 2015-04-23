@@ -45,7 +45,7 @@ int server(char* port);
 int create_tcp_conn(char* port, const char* addr);
 void* handle_client_conn(void* conn_fd);
 void* handle_host_downstream(void* conn_fd);
-void* handle_client_request(void* request_ptr);
+void* handle_client_request(client_request* c_req);
 get_request* parse_get_request(string* request);
 void* forward_data(int source_fd, int dest_fd);
 
@@ -106,9 +106,6 @@ int server(char* port)
 	/* close server socket */
 	close(server_fd);
 
-	/* exit thread without killing children */
-	pthread_exit(NULL);
-
 	return 0;
 }
 
@@ -150,9 +147,7 @@ void* handle_client_conn(void* conn_ptr) {
 			c_req->c_conn = conn;
 			rcount++;
 
-			//TODO how to handle the case of two requests to same host?
-			pthread_t worker;
-			pthread_create(&worker, NULL, handle_client_request, (void*) c_req);
+			handle_client_request(c_req);
 		}
 	}
 
@@ -170,8 +165,7 @@ void* handle_client_conn(void* conn_ptr) {
 	pthread_exit(NULL);
 }
 
-void* handle_client_request(void* req_ptr) {
-	client_request* req = (client_request*) req_ptr;
+void* handle_client_request(client_request* req) {
 	client_conn* conn = req->c_conn;
 	string* request = req->data;
 
@@ -221,8 +215,6 @@ void* handle_client_request(void* req_ptr) {
 	}
 
 	forward_data(host_fd, conn->client_fd);
-
-	pthread_exit(NULL);
 }
 
 void* handle_host_downstream(void* host_dstream) {
