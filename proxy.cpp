@@ -17,9 +17,17 @@
 
 using namespace std;
 
+typedef struct {
+	string* op;
+	string* page;
+	string* version;
+	string* host;
+} get_request;
+
 int server(uint16_t port, uint16_t cache);
 void* handle_connection(void* conn_fd);
 void* handle_request(void* request_ptr);
+get_request* parse_get_request(string* request);
 
 int main(int argc, char** argv)
 {
@@ -113,6 +121,7 @@ void* handle_connection(void* sockfd_ptr) {
 			continue;
 		} else { // handle HTTP request
 			string* rcv_str = new string(rcv_buf);
+			//TODO do you really want to spawn a thread here?
 			pthread_t worker;
 			pthread_create(&worker, NULL, handle_request, (void*) rcv_str);
 		}
@@ -127,6 +136,7 @@ void* handle_connection(void* sockfd_ptr) {
 
 void* handle_request(void* request_ptr) {
 	string request = *((string*) request_ptr);
+	cout << request << endl;
 
 	/* return if not GET request */
 	if(request.find("GET") != 0) {
@@ -134,4 +144,47 @@ void* handle_request(void* request_ptr) {
 		return NULL;
 	}
 
+	/* parse get request */
+	get_request* greq = parse_get_request(&request);
+
 }
+
+get_request* parse_get_request(string* request) {
+	/* parse operation type */
+	size_t first_space = request->find(" ");
+	string op = request->substr(0, first_space);
+	cout << "Op: " << op << endl;
+
+	/* parse page */
+	size_t second_space = request->find(" ", first_space + 1);
+	string page = request->substr(first_space + 1, second_space - first_space - 1);
+	cout << "Page: " << page << endl;
+
+	/* parse version */
+	size_t first_crlf = request->find("\n");
+	string version = request->substr(second_space + 1, first_crlf - second_space - 1);
+	cout << "Version: " << version << endl;
+
+	/* parse host */
+	string host_tag = "Host: ";
+	size_t host_start = request->find(host_tag) + host_tag.length();
+	size_t host_end = request->find("\n", host_start);
+	string host = request->substr(host_start, host_end - host_start - 1);
+	cout << "Host: " << host << endl;
+
+	/* generate get_request struct */
+	get_request* greq = new get_request;
+	greq->op = new string(op);
+	greq->page = new string(page);
+	greq->version = new string(version);
+	greq->host = new string(host);
+
+	return greq;
+
+}
+
+
+
+
+
+
