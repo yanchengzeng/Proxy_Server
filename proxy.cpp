@@ -35,8 +35,8 @@ typedef struct {
 	client_conn* c_conn;
 } request;
 
-int server(uint16_t port, uint16_t cache);
-int create_tcp_conn(uint16_t port, char* addr);
+int server(char* port);
+int create_tcp_conn(char* port, char* addr);
 void* handle_client_conn(void* conn_fd);
 void* handle_request(void* request_ptr);
 get_request* parse_get_request(string* request);
@@ -48,24 +48,25 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	int port = atoi(argv[1]);
+	char* port_str = argv[1];
+	int port = atoi(port_str);
 
 	if (port < 1024 || port > 65535) {
 		printf("Port number should be equal to or larger than 1024 and smaller than 65535\n");
 		return 1;
 	}
 
-	uint16_t cache_size = atoi(argv[2]);
+	int cache_size = atoi(argv[2]);
 
-	server(port, cache_size);
+	server(port_str);
 
 	return 0;
 }
 
 
-int server(uint16_t port, uint16_t cache)
+int server(char* port)
 {
-	int server_fd = create_tcp_conn(port, (char*) LOCAL_ADDR);
+	int server_fd = create_tcp_conn(port, NULL);
 
 	/* listen for incoming connections */
 	listen(server_fd, MAX_BACK_LOG);
@@ -97,33 +98,52 @@ int server(uint16_t port, uint16_t cache)
 	return 0;
 }
 
-int create_tcp_conn(uint16_t port, char* addr) {
-	int server_fd;
-	struct sockaddr_in listenaddr;
-	int val;
+int create_tcp_conn(char* port, char* addr) {
+	int sockfd_ls; // listen socket descriptor
+	long sockfd_ac; // accept socket descriptor
+	struct addrinfo ai_hints; // hints address info
+	struct addrinfo *ai_list; // linked list of address info structs returned by get address info
+	struct addrinfo *ai; // valid address info
 
-	/* create socket */
-	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
-		perror("Create server error");
+	/* fill hints address info */
+	memset(&ai_hints, 0, sizeof(ai_hints));
+	ai_hints.ai_family = AF_UNSPEC;
+	ai_hints.ai_socktype = SOCK_STREAM;
+	if(addr == NULL) ai_hints.ai_flags = AI_PASSIVE;
+
+	/* get address info */
+	if (getaddrinfo(addr, port, &ai_hints, &ai_list) != 0) {
+		perror("Get address info error");
 		return -1;
 	}
 
-	bzero(&listenaddr, sizeof(listenaddr));
-	listenaddr.sin_family = AF_INET;
-	listenaddr.sin_addr.s_addr = inet_addr(addr);
-	listenaddr.sin_port = htons(port);
+	/* loop through ai linked list and open socket on first valid addrinfo struct */
+	for (ai = ai_list; ai != NULL; ai = ai->ai_next) {
 
-	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, (const void*)&val, sizeof(int)) < 0){
-		perror("Cannot reuse address");
+		/* try to open a socket */
+		if ((sockfd_ls = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol)) != -1) {
+
+			/* try to bink socket to port */
+			if (bind(sockfd_ls, ai->ai_addr, ai->ai_addrlen) == 0) {
+
+				/* socket opened and bound */
+				break;
+
+			} else perror("Socket binding error");
+
+		} else perror("Socket open error");
+	}
+
+	/* return error if no valid addrinfos found */
+	if (ai == NULL) {
+		printf("No valid address info structure found.\n");
 		return -1;
 	}
 
-	if (bind(server_fd, (struct sockaddr*) &listenaddr, sizeof(listenaddr)) < 0){
-		perror("Cannot bind");
-		return -1;
-	}
+	/* free memory */
+	freeaddrinfo(ai_list);
 
-	return server_fd;
+	return sockfd_ls;
 }
 
 
