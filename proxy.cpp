@@ -12,29 +12,32 @@
 #include <map>
 
 //TODO try changing to local host
-#define SERVER_IP "127.0.0.1"
+#define LOCAL_ADDR "127.0.0.1"
 #define MAX_BACK_LOG (5)
 #define MAX_PKT_SIZE (1500)
 
 using namespace std;
 
-struct get_request {
+typedef struct {
 	string* op;
 	string* page;
 	string* version;
 	string* host;
-};
+} get_request;
 
-struct client_conn {
+typedef struct {
 	int client_fd;
 	map<string, int>* host_fds;
-};
+} client_conn;
 
-typedef struct get_request get_request;
-typedef struct client_conn client_conn;
+typedef struct {
+	string* data;
+	client_conn* c_conn;
+} request;
 
 int server(uint16_t port, uint16_t cache);
-void* handle_connection(void* conn_fd);
+int create_tcp_conn(uint16_t port, char* addr);
+void* handle_client_conn(void* conn_fd);
 void* handle_request(void* request_ptr);
 get_request* parse_get_request(string* request);
 
@@ -62,31 +65,7 @@ int main(int argc, char** argv)
 
 int server(uint16_t port, uint16_t cache)
 {
-	int server_fd;
-	struct sockaddr_in listenaddr;
-	socklen_t listenlen = sizeof(struct sockaddr_in);
-	int val;
-
-	/* create socket */
-	if ((server_fd = socket(AF_INET,SOCK_STREAM,0)) < 0){
-		perror("Create server error.");
-		return -1;
-	}
-
-	bzero((char*) &listenaddr,sizeof(listenaddr));
-	listenaddr.sin_family = AF_INET;
-	listenaddr.sin_addr.s_addr = inet_addr(SERVER_IP);
-	listenaddr.sin_port = htons(port);
-
-	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, (const void*)&val, sizeof(int)) < 0){
-		perror("Cannot reuse address.");
-		return -1;
-	}
-
-	if (bind(server_fd, (struct sockaddr*)&listenaddr, sizeof(listenaddr)) < 0){
-		perror("Cannot bind.");
-		return -1;
-	}
+	int server_fd = create_tcp_conn(port, (char*) LOCAL_ADDR);
 
 	/* listen for incoming connections */
 	listen(server_fd, MAX_BACK_LOG);
@@ -94,7 +73,7 @@ int server(uint16_t port, uint16_t cache)
 	// loop for client connections
 	while(1){
 		int conn_fd;
-		if ((conn_fd = accept(server_fd, (struct sockaddr*)&listenaddr, &listenlen)) < 0){
+		if ((conn_fd = accept(server_fd, (struct sockaddr*) NULL, NULL)) < 0){
 			perror("Accept error");
 			return -1;
 		}
@@ -106,7 +85,7 @@ int server(uint16_t port, uint16_t cache)
 
 		// dispatch worker thread to handle connection
 		pthread_t worker;
-		pthread_create(&worker, NULL, handle_connection, (void*) c_conn);
+		pthread_create(&worker, NULL, handle_client_conn, (void*) c_conn);
 	}
 
 	/* close server socket */
@@ -118,7 +97,37 @@ int server(uint16_t port, uint16_t cache)
 	return 0;
 }
 
-void* handle_connection(void* c_conn_ptr) {
+int create_tcp_conn(uint16_t port, char* addr) {
+	int server_fd;
+	struct sockaddr_in listenaddr;
+	int val;
+
+	/* create socket */
+	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
+		perror("Create server error");
+		return -1;
+	}
+
+	bzero(&listenaddr, sizeof(listenaddr));
+	listenaddr.sin_family = AF_INET;
+	listenaddr.sin_addr.s_addr = inet_addr(addr);
+	listenaddr.sin_port = htons(port);
+
+	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, (const void*)&val, sizeof(int)) < 0){
+		perror("Cannot reuse address");
+		return -1;
+	}
+
+	if (bind(server_fd, (struct sockaddr*) &listenaddr, sizeof(listenaddr)) < 0){
+		perror("Cannot bind");
+		return -1;
+	}
+
+	return server_fd;
+}
+
+
+void* handle_client_conn(void* c_conn_ptr) {
 	client_conn* c_conn = (client_conn*) c_conn_ptr;
 	int sockfd = c_conn->client_fd;
 
@@ -134,13 +143,17 @@ void* handle_connection(void* c_conn_ptr) {
 		if (rcv_len == 0) { // client has closed the connection
 			break;
 		} else if (rcv_len == -1) { // receive error
-			perror("Receive error:");
+			perror("Receive error");
 			continue;
 		} else { // handle HTTP request
 			string* rcv_str = new string(rcv_buf);
-			//TODO change this to queue up a bunch of requests and then handle them all at once
+			request* req = new request;
+			req->data = rcv_str;
+			req->c_conn = c_conn;
+
+			//TODO how to handle the case of two requests to same host?
 			pthread_t worker;
-			pthread_create(&worker, NULL, handle_request, (void*) rcv_str);
+			pthread_create(&worker, NULL, handle_request, (void*) req);
 		}
 	}
 
@@ -152,21 +165,39 @@ void* handle_connection(void* c_conn_ptr) {
 	pthread_exit(NULL);
 }
 
-void* handle_request(void* request_ptr) {
-	string request = *((string*) request_ptr);
-	cout << request << endl;
+void* handle_request(void* req_ptr) {
+	request* req = (request*) req_ptr;
+	client_conn* c_conn = req->c_conn;
+	string* request = req->data;
+	cout << *request << endl;
 
 	/* return if not GET request */
-	if(request.find("GET") != 0) {
+	if(request->find("GET") != 0) {
 		cout << "Ignoring non-GET request." << endl;
 		return NULL;
 	}
 
 	/* parse get request */
-	get_request* greq = parse_get_request(&request);
+	get_request* greq = parse_get_request(request);
 
-	/* open new connection if one doesn't already exist */
+	/* check if requested page is cached */
+	// TODO
 
+	/* forward request to server */
+	/* get host socket */
+	int host_fd;
+	map<string, int> host_map = *c_conn->host_fds;
+	if(host_map.find(*greq->host) == host_map.end()) { // no connection to host exists
+		// open new connection
+		// spawn listener thread
+	} else { // connection to host exists
+		host_fd = host_map[*greq->host];
+	}
+
+	/* forward request to host */
+	if(send(host_fd, request->c_str(), request->length(), 0) < 0) {
+		perror("Request forwarding error");
+	}
 }
 
 get_request* parse_get_request(string* request) {
