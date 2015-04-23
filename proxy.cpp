@@ -259,11 +259,12 @@ void* forward_data(int source_fd, int dest_fd) {
 		cout << "After select." << endl;
 
 		if(FD_ISSET(source_fd, &read_fds)) {
-			cout << "Source is able to read." << endl;
+
+			/* recieve from source */
 			fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0);
 
-			if(fwd_len = -1) {
-				cout << "Host receive error." << endl;
+			if(fwd_len == -1) {
+				perror("Host receive error");
 				break;
 			} else if(fwd_len == 0) {
 				cout << "Host closed connection." << endl;
@@ -272,8 +273,6 @@ void* forward_data(int source_fd, int dest_fd) {
 
 			/* forward data to destination */
 			send(dest_fd, fwd_buf, fwd_len, 0);
-		} else {
-			cout << "Select timed out." << endl;
 		}
 	}
 }
