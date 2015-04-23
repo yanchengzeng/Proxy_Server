@@ -97,6 +97,7 @@ int server(char* port)
 		c_conn->conn_num = ccount;
 		c_conn->client_fd = client_fd;
 		c_conn->host_fds = new map<string, int>;
+		pthread_mutex_init(&c_conn->map_lock, NULL);
 		ccount++;
 
 		// dispatch worker thread to handle connection

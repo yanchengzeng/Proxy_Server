@@ -1,4 +1,1119 @@
-Socket binding error: Address already in use
-Socket binding error: Address already in use
-Accept error: Bad file descriptor
-No valid address info structure found.
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 0
+Socket No. 4
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 0
+Socket No. 4
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/ HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Sending to : 6
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 1
+Socket No. 5
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 1
+Socket No. 5
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/styles/simple.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 2
+Socket No. 7
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 2
+Socket No. 7
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/libs/jquery-1.4.2.min.js HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 3
+Socket No. 8
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 3
+Socket No. 8
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/libs/jquery.imgpreload.min.js HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================NEW CONNECTION
+-----------------------------
+Connection No. 4
+Socket No. 9
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 4
+Socket No. 9
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/SovbaRegular/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+
+NEW CONNECTION
+-----------------------------
+Connection No. 5
+Socket No. 11
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 5
+Socket No. 11
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/MuseoSlab500/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 6
+Socket No. 12
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 6
+Socket No. 12
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/CallunaSansRegular/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 7
+Socket No. 15
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 7
+Socket No. 15
+-----------------------------
+GET http://fonts.googleapis.com/css?family=Calligraffitti HTTP/1.1
+Host: fonts.googleapis.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 8
+Socket No. 16
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 8
+Socket No. 16
+-----------------------------
+GET http://fonts.googleapis.com/css?family=Shadows+Into+Light HTTP/1.1
+Host: fonts.googleapis.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 10
+Socket No. 21
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 9
+Socket No. 17
+=============================
+Sending to : Sending to : 1013
+
+Sending to : 14
+Sending to : 19
+Sending to : 20
+Sending to : 18
+Sending to : 23
+Sending to : 24
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 0
+Socket No. 4
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/personal/bruce--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 6
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 5
+Socket No. 11
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/images/duke-univ-crest.png HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================Host in map.
+Sending to : 19
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 8
+Socket No. 16
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/pgh--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 3
+Socket No. 8
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home3b--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+Host in map.NEW REQUEST : 1
+-----------------------------
+Connection No. 1
+Socket No. 5
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/personal/bnp--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 10
+
+NEW REQUEST : 1
+-----------------------------
+Connection No. 6
+Socket No. 12
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-1-exc--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 20
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 10
+Socket No. 21
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/ethsergraph--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 7
+Socket No. 15
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base2b--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 2
+Socket No. 7
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/wavsergraph--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 13
+==========================================================
+NEW REQUEST : 1
+-----------------------------
+Connection No. 4
+Socket No. 9
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/personal/boys-in-a-tub--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 18
+=============================
+=============================
+NEW CONNECTION
+
+Sending to : 14
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 9
+Socket No. 17
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/setup--preview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 11
+Socket No. 22
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 11
+Socket No. 22
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna1b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+NEW CONNECTION
+-----------------------------
+-----------------------------
+Connection No. 15
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 17
+Socket No. 33
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 17
+Socket No. 33
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base3b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Socket No. 31
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 15
+Socket No. 31
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-3-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 14
+Socket No. 30
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 14
+Socket No. 30
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-2-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 19
+Socket No. 35
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 19
+Socket No. 35
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/bruce-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 13
+Socket No. 29
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 13
+Socket No. 29
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home1b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 27
+Socket No. 43
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 27
+Socket No. 43
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base4b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 18
+Socket No. 34
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 18
+Socket No. 34
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/quad--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+Sending to : 25
+
+NEW CONNECTION
+-----------------------------
+Connection No. 12
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 0
+Socket No. 4
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/craigst-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 6
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 20
+Socket No. 36
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 20
+Socket No. 36
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna2b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 26
+Socket No. 42
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 26
+Socket No. 42
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base2b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 25
+Socket No. 41
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 25
+Socket No. 41
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/equip-1-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 24
+Socket No. 40
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 24
+Socket No. 40
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home4b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+Connection No. Sending to : 27
+Socket No. 28
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 12
+Socket No. 28
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna4b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 22
+Socket No. 38
+=============================
+=============================
+NEW REQUEST : 0
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 23
+Socket No. 39
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 23
+Socket No. 39
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home2b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+16
+Socket No. 32
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 16
+Socket No. 32
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/base1b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+-----------------------------
+Connection No. 22
+Socket No. 38
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/home3b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+-----------------------------
+Connection No. 21
+Socket No. 37
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 21
+Socket No. 37
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/antenna3b--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 28
+Socket No. 44
+=============================
+Sending to : 50
+Sending to : 47
+Sending to : 48
+Sending to : 49
+Sending to : 26
+Sending to : 45
+Sending to : 51
+Sending to : 52
+Sending to : 57
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 28
+Socket No. 44
+-----------------------------
+GET http://fonts.gstatic.com/s/shadowsintolight/v6/clhLqOv7MXn459PTh0gXYHW1xglZCgocDnD_teV2lMU.woff HTTP/1.1
+Host: fonts.gstatic.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://fonts.googleapis.com/css?family=Shadows+Into+Light
+Origin: http://www.cs.duke.edu
+Connection: keep-alive
+
+
+=============================
+Sending to : 53
+Sending to : 55
+Sending to : 54
+Sending to : 56
+Sending to : 58
+Sending to : 59
+Sending to : 61
+Sending to : 60
+Sending to : 62
+Sending to : 64
+Sending to : 46
+==========================================================
+
+NEW CONNECTION
+-----------------------------
+Connection No. 29
+Socket No. 63
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 29
+Socket No. 63
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/wean-exc--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 30
+Socket No. 65
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 30
+Socket No. 65
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/photos/awn/phipps--gpreview.jpg HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Sending to : 67
+Sending to : 68
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 32
+Socket No. 69
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 31
+Socket No. 66
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 34
+Socket No. 71
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 33
+Socket No. 70
+=============================
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 8
+Socket No. 16
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/data/publications.json HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: application/json, text/javascript, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+X-Requested-With: XMLHttpRequest
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 25
+=============================
+NEW REQUEST : 2
+-----------------------------
+Connection No. 1
+Socket No. 5
+-----------------------------
+GET http://www.cs.duke.edu/favicon.ico HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+9822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 10
+Closing Connection No. 1
+=============================
+NEW REQUEST : 3
+-----------------------------
+Connection No. 8
+Socket No. 16
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/images/popup.gif HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Cookie: __vrf=1429822360360OrlgK5WTmB6NAmcCwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+CwSSbEPD2GlDLKgRs
+Connection: keep-alive
+
+
+=============================
+Host in map.
+Sending to : 25
+Host closed connection.
+Closing Connection No. 8
+Host closed connection.Host closed connection.
+
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Closing Connection No. 32
+Closing Connection No. 19
+Closing Connection No. 17
+Closing Connection No. 5
+Closing Connection No. 2
+Closing Connection No. 3
+Closing Connection No. 4
+Closing Connection No. 6
+Closing Connection No. Closing Connection No. 7
+Closing Connection No. 0
+31
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Closing Connection No. 34
+Closing Connection No. 14
+Closing Connection No. 10
+Closing Connection No. 13
+Closing Connection No. 33
+Closing Connection No. 15
+Closing Connection No. 27
+Closing Connection No. 26
+Closing Connection No. 9
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Closing Connection No. 21
+Closing Connection No. 20
+Closing Connection No. 25
+Closing Connection No. 22
+Closing Connection No. 18
+Closing Connection No. 23
+Closing Connection No. 24
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Closing Connection No. 30
+Closing Connection No. 12
+Closing Connection No. 11
+Closing Connection No. 16
+Closing Connection No. 29
