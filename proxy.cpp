@@ -11,10 +11,8 @@
 #include <iostream>
 #include <map>
 
-//TODO try changing to local host
-#define LOCAL_ADDR "127.0.0.1"
 #define MAX_BACK_LOG (5)
-#define MAX_PKT_SIZE (1500)
+#define RCV_BUF_SIZE (1500)
 
 using namespace std;
 
@@ -35,11 +33,21 @@ typedef struct {
 	client_conn* c_conn;
 } request;
 
+typedef struct {
+	int host_fd;
+	client_conn* c_conn;
+} host_downstream;
+
 int server(char* port);
-int create_tcp_conn(char* port, char* addr);
+int create_tcp_conn(char* port, const char* addr);
 void* handle_client_conn(void* conn_fd);
+void* handle_host_downstream(void* conn_fd);
 void* handle_request(void* request_ptr);
 get_request* parse_get_request(string* request);
+void* forward_data(int source_fd, int dest_fd);
+
+//TODO
+// - when to close downstream connection
 
 int main(int argc, char** argv)
 {
@@ -98,7 +106,7 @@ int server(char* port)
 	return 0;
 }
 
-int create_tcp_conn(char* port, char* addr) {
+int create_tcp_conn(char* port, const char* addr) {
 	int sockfd_ls; // listen socket descriptor
 	long sockfd_ac; // accept socket descriptor
 	struct addrinfo ai_hints; // hints address info
@@ -109,10 +117,13 @@ int create_tcp_conn(char* port, char* addr) {
 	memset(&ai_hints, 0, sizeof(ai_hints));
 	ai_hints.ai_family = AF_UNSPEC;
 	ai_hints.ai_socktype = SOCK_STREAM;
-	if(addr == NULL) ai_hints.ai_flags = AI_PASSIVE;
+	if (addr == NULL) ai_hints.ai_flags = AI_PASSIVE;
 
 	/* get address info */
-	if (getaddrinfo(addr, port, &ai_hints, &ai_list) != 0) {
+	int code;
+	if ((code = getaddrinfo(addr, port, &ai_hints, &ai_list)) != 0) {
+		cout << "addr: " << addr << endl;
+		cout << gai_strerror(code) << endl;
 		perror("Get address info error");
 		return -1;
 	}
@@ -123,13 +134,21 @@ int create_tcp_conn(char* port, char* addr) {
 		/* try to open a socket */
 		if ((sockfd_ls = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol)) != -1) {
 
-			/* try to bink socket to port */
-			if (bind(sockfd_ls, ai->ai_addr, ai->ai_addrlen) == 0) {
-
-				/* socket opened and bound */
-				break;
-
-			} else perror("Socket binding error");
+			if(addr == NULL) {
+				/* try to bink socket to port */
+				if (bind(sockfd_ls, ai->ai_addr, ai->ai_addrlen) == 0) {
+					break;
+				} else {
+					perror("Socket binding error");
+				}
+			} else {
+				/* try to connect to address */
+				if (connect(sockfd_ls, ai->ai_addr, ai->ai_addrlen) == 0) {
+					break;
+				} else {
+					perror("Socket connect error");
+				}
+			}
 
 		} else perror("Socket open error");
 	}
@@ -149,16 +168,16 @@ int create_tcp_conn(char* port, char* addr) {
 
 void* handle_client_conn(void* c_conn_ptr) {
 	client_conn* c_conn = (client_conn*) c_conn_ptr;
-	int sockfd = c_conn->client_fd;
+	int client_fd = c_conn->client_fd;
 
 	/* loop for client messages */
 	while (1) {
 		//TODO how long is HTTP requst?
-		char rcv_buf[MAX_PKT_SIZE]; // receive data buffer
+		char rcv_buf[RCV_BUF_SIZE]; // receive data buffer
 		ssize_t rcv_len; // receive data length
 
 		/* receive message from client */
-		rcv_len = recv(sockfd, (void*) rcv_buf, sizeof(rcv_buf), 0);
+		rcv_len = recv(client_fd, (void*) rcv_buf, sizeof(rcv_buf), 0);
 
 		if (rcv_len == 0) { // client has closed the connection
 			break;
@@ -178,7 +197,7 @@ void* handle_client_conn(void* c_conn_ptr) {
 	}
 
 	/* close socket and free connection struct */
-	close(sockfd);
+	close(client_fd);
 	delete c_conn->host_fds;
 	delete c_conn;
 
@@ -203,20 +222,47 @@ void* handle_request(void* req_ptr) {
 	/* check if requested page is cached */
 	// TODO
 
-	/* forward request to server */
 	/* get host socket */
 	int host_fd;
+	string host_addr = *greq->host;
 	map<string, int> host_map = *c_conn->host_fds;
-	if(host_map.find(*greq->host) == host_map.end()) { // no connection to host exists
-		// open new connection
-		// spawn listener thread
+
+	if(host_map.find(host_addr) == host_map.end()) { // no connection to host exists
+		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
+		host_map[host_addr] = host_fd; // add connection to host map
+		//pthread_t worker;
+		//cout << "creating listener" << endl;
+		//pthread_create(&worker, NULL, handle_host_downstream, (void*) c_conn);
 	} else { // connection to host exists
-		host_fd = host_map[*greq->host];
+		host_fd = host_map[host_addr];
 	}
 
 	/* forward request to host */
 	if(send(host_fd, request->c_str(), request->length(), 0) < 0) {
 		perror("Request forwarding error");
+	}
+
+	forward_data(host_fd, c_conn->client_fd);
+
+	close(host_fd);
+}
+
+void* handle_host_downstream(void* host_dstream) {
+	host_downstream* dstream = (host_downstream*) host_dstream;
+	int host_fd = dstream->host_fd;
+	int client_fd = dstream->c_conn->client_fd;
+
+	forward_data(host_fd, client_fd);
+
+	close(host_fd);
+}
+
+void* forward_data(int source_fd, int dest_fd) {
+	char fwd_buf[RCV_BUF_SIZE];
+	ssize_t fwd_len;
+
+	while((fwd_len = recv(source_fd, fwd_buf, sizeof(fwd_buf), 0)) > 0) {
+		send(dest_fd, fwd_buf, fwd_len, 0);
 	}
 }
 
