@@ -196,39 +196,37 @@ void* handle_client_request(client_request* req) {
 	/* get host socket */
 	int host_fd;
 	string host_addr = *greq->host;
-	map<string, int> host_map = *conn->host_fds;
-	// TODO lock the host map
+	map<string, int> *host_map = conn->host_fds;
 
-	if(host_map.find(host_addr) == host_map.end()) { // no connection to host exists
+	if(host_map->find(host_addr) == host_map->end()) { // no connection to host exists
 		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
-		host_map[host_addr] = host_fd; // add connection to host map
+		host_map->operator[](host_addr) = host_fd; // add connection to host map
 
 		host_downstream *hds = new host_downstream;
 		hds->host_addr = greq->host;
 		hds->c_conn = conn;
 
-		//pthread_t worker;
-		//pthread_create(&worker, NULL, handle_host_downstream, (void*) hds);
+		pthread_t worker;
+		pthread_create(&worker, NULL, handle_host_downstream, (void*) hds);
 	} else { // connection to host exists
 		cout << "Host in map." << endl;
-		host_fd = host_map[host_addr];
+		host_fd = host_map->operator[](host_addr);
 	}
 
 	/* forward request to host */
-	if(int send_len = send(host_fd, request->c_str(), request->length(), 0) < 0) {
+	int send_len;
+	cout << "Sending to : " << host_fd << endl;
+	if((send_len = send(host_fd, request->c_str(), request->length(), 0)) < 0) {
 		perror("Request forwarding error");
-	} else {
-		cout << send_len << " bytes sent." << endl;
 	}
-
 }
 
 void* handle_host_downstream(void *host_dstream) {
 	host_downstream* dstream = (host_downstream*) host_dstream;
 	string host_addr = *dstream->host_addr;
 	int client_fd = dstream->c_conn->client_fd;
-	map<string, int> host_map = *dstream->c_conn->host_fds;
-	int host_fd = host_map[host_addr];
+	map<string, int> *host_map = dstream->c_conn->host_fds;
+	int host_fd = host_map->operator[](host_addr);
 
 	/* forward data from host to client */
 	forward_data(host_fd, client_fd);
@@ -237,7 +235,7 @@ void* handle_host_downstream(void *host_dstream) {
 	close(host_fd);
 
 	/* remove host from map */
-	host_map.erase(host_addr);
+	host_map->erase(host_addr);
 }
 
 void* forward_data(int source_fd, int dest_fd) {
@@ -245,9 +243,6 @@ void* forward_data(int source_fd, int dest_fd) {
 	ssize_t fwd_len;
 	struct timeval tv;
 	fd_set read_fds;
-	fd_set write_fds;
-	fd_set except_fds;
-	int num_fds;
 
 	tv.tv_sec = 100;
 	tv.tv_usec = 500000;
@@ -257,7 +252,6 @@ void* forward_data(int source_fd, int dest_fd) {
 	FD_SET(source_fd, &read_fds);
 
 	while(1) {
-		cout << "Before select." << endl;
 
 		/* wait for something to read on source socket */
 		select(source_fd + 1, &read_fds, NULL, NULL, &tv);
