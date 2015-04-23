@@ -30,7 +30,7 @@ typedef struct {
 	map<string, int> *host_fds;
 	pthread_mutex_t hmap_lock;
 	pthread_mutex_t *cmap_lock;
-	bool closed;
+	int thread_count; // number of threads using the connection
 } client_conn;
 
 typedef struct {
@@ -100,7 +100,7 @@ int server(char* port)
 		/* retreive or construct host structure */
 		client_conn* c_conn;
 		if(conn_map->find(client_fd) == conn_map->end() ||
-				conn_map->operator[](client_fd)->closed == true) { // new connection
+				conn_map->operator[](client_fd)->thread_count == 0) { // new connection
 			cout << "NEW CONNECTION" << endl;
 
 			/* construct new client connection struct */
@@ -109,7 +109,7 @@ int server(char* port)
 			c_conn->client_fd = client_fd;
 			c_conn->host_fds = new map<string, int>;
 			c_conn->cmap_lock = &cmap_lock;
-			c_conn->closed = false;
+			c_conn->thread_count = 1;
 			pthread_mutex_init(&c_conn->hmap_lock, NULL);
 			ccount++;
 
@@ -121,6 +121,7 @@ int server(char* port)
 		} else { // existing connection
 			cout << "EXISTING CONNECTION" << endl;
 			c_conn = conn_map->operator[](client_fd);
+			c_conn->thread_count++;
 		}
 
 		// dispatch worker thread to handle connection
@@ -179,22 +180,26 @@ void* handle_client_conn(void* conn_ptr) {
 
 	/* set connection closed flag */
 	pthread_mutex_lock(conn->cmap_lock);
-	conn->closed = true;
-	pthread_mutex_unlock(conn->cmap_lock);
+	conn->thread_count--;
 
-	/* close all sockets */
-	pthread_mutex_lock(&conn->hmap_lock);
-	map<string, int>::iterator it;
-	for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
-		close(it->second);
-		//TODO kill downstream threads
+	/* delete connection if no other threads are using it */
+	if(conn->thread_count == 0) {
+
+		/* close all sockets */
+		pthread_mutex_lock(&conn->hmap_lock);
+		map<string, int>::iterator it;
+		for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
+			close(it->second);
+			//TODO kill downstream threads
+		}
+		pthread_mutex_unlock(&conn->hmap_lock);
+		close(client_fd);
+
+		/* free connection struct memory */
+		delete conn->host_fds;
+		delete conn;
 	}
-	pthread_mutex_unlock(&conn->hmap_lock);
-	close(client_fd);
-
-	/* free memory */
-	delete conn->host_fds;
-	delete conn;
+	pthread_mutex_unlock(conn->cmap_lock);
 
 	pthread_exit(NULL);
 }
@@ -267,12 +272,10 @@ void* handle_host_downstream(void *host_dstream) {
 	/* forward data from host to client */
 	forward_data(host_fd, client_fd);
 
-	/* close host socket */
-	close(host_fd);
-
-	/* remove host from map */
+	/* remove host from map and close socket */
 	pthread_mutex_lock(&dstream->c_conn->hmap_lock);
 	host_map->erase(host_addr);
+	close(host_fd);
 	pthread_mutex_unlock(&dstream->c_conn->hmap_lock);
 }
 
