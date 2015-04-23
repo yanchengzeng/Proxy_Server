@@ -245,7 +245,7 @@ void* handle_host_downstream(void *host_dstream) {
 	/* remove host from map */
 	pthread_mutex_lock(&dstream->c_conn->map_lock);
 	host_map->erase(host_addr);
-	pthread_mutex_lock(&dstream->c_conn->map_lock);
+	pthread_mutex_unlock(&dstream->c_conn->map_lock);
 }
 
 void* forward_data(int source_fd, int dest_fd) {
