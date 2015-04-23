@@ -156,8 +156,14 @@ void* handle_client_conn(void* conn_ptr) {
 		}
 	}
 
-	/* close socket and free connection struct */
+	/* close all sockets */
 	close(client_fd);
+	map<string, int>::iterator it;
+	for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
+		close(it->second);
+	}
+
+	/* free memory */
 	delete conn->host_fds;
 	delete conn;
 
@@ -216,7 +222,7 @@ void* handle_client_request(void* req_ptr) {
 
 	forward_data(host_fd, conn->client_fd);
 
-	close(host_fd);
+	pthread_exit(NULL);
 }
 
 void* handle_host_downstream(void* host_dstream) {
