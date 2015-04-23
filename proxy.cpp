@@ -216,10 +216,10 @@ void* handle_client_request(client_request* req) {
 	}
 
 	/* return if not GET request */
-	//if(request->find("GET") != 0) {
-		//cout << "Ignoring non-GET request." << endl;
-		//return NULL;
-	//}
+	if(request->find("GET") != 0) {
+		cout << "Ignoring non-GET request." << endl;
+		return NULL;
+	}
 
 	/* parse get request */
 	get_request* greq = parse_get_request(request);
