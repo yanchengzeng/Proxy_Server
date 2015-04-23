@@ -28,6 +28,7 @@ typedef struct {
 	int conn_num;
 	int client_fd;
 	map<string, int>* host_fds;
+	pthread_mutex_t map_lock;
 } client_conn;
 
 typedef struct {
@@ -137,7 +138,9 @@ void* handle_client_conn(void* conn_ptr) {
 			cout << "Closing Connection No. " << conn->conn_num << endl;
 			break;
 		} else if (rcv_len == -1) { // receive error
-			perror("Receive error");
+			char err[100];
+			sprintf(err, "Connection No. %d receive error", conn->conn_num);
+			perror(err);
 			continue;
 		} else { // handle HTTP request
 			string* rcv_str = new string(rcv_buf);
@@ -152,11 +155,14 @@ void* handle_client_conn(void* conn_ptr) {
 	}
 
 	/* close all sockets */
-	close(client_fd);
+	pthread_mutex_lock(&conn->map_lock);
 	map<string, int>::iterator it;
 	for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
 		close(it->second);
+		//TODO kill downstream threads
 	}
+	pthread_mutex_unlock(&conn->map_lock);
+	close(client_fd);
 
 	/* free memory */
 	delete conn->host_fds;
@@ -199,8 +205,10 @@ void* handle_client_request(client_request* req) {
 	map<string, int> *host_map = conn->host_fds;
 
 	if(host_map->find(host_addr) == host_map->end()) { // no connection to host exists
+		pthread_mutex_lock(&conn->map_lock);
 		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
 		host_map->operator[](host_addr) = host_fd; // add connection to host map
+		pthread_mutex_unlock(&conn->map_lock);
 
 		host_downstream *hds = new host_downstream;
 		hds->host_addr = greq->host;
@@ -235,7 +243,9 @@ void* handle_host_downstream(void *host_dstream) {
 	close(host_fd);
 
 	/* remove host from map */
+	pthread_mutex_lock(&dstream->c_conn->map_lock);
 	host_map->erase(host_addr);
+	pthread_mutex_lock(&dstream->c_conn->map_lock);
 }
 
 void* forward_data(int source_fd, int dest_fd) {
@@ -255,8 +265,6 @@ void* forward_data(int source_fd, int dest_fd) {
 
 		/* wait for something to read on source socket */
 		select(source_fd + 1, &read_fds, NULL, NULL, &tv);
-
-		cout << "After select." << endl;
 
 		if(FD_ISSET(source_fd, &read_fds)) {
 
