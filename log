@@ -3150,3 +3150,234 @@ Host closed connection.
 Host closed connection.
 Closing Connection No. 60
 Closing Connection No. 53
+=============================
+NEW REQUEST : 6
+-----------------------------
+Connection No. 47
+Socket No. 19
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/ HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+etrics.loader%7Cext.uls.eventlogger%2Cinterlanguage%7Cext.visualEditor.targetLoader%7Cext.wikimediaEvents.statsd%7Cjquery.checkboxShiftClick%2CgetAttrs%2Chashchange%2Chidpi%2ChighlightText%2CmakeCollapsible%2Cmw-jump%2Cplaceholder%2CscrollTo%2Csuggestions%7Cmediawiki.action.view.postEdit%7Cmediawiki.cookie%2Chidpi%2CsearchSuggest%2Ctemplate%2Ctoc%7Cmediawiki.page.ready%7Cmediawiki.ui.icon%7Cmmv.Config%2CHtmlUtils%2Cbootstrap%7Cmmv.bootstrap.autostart%7Cmmv.logging.ActionLogger%2CDurationLogger%2CLogger%7Coojs%7Cschema.NavigationTiming%2CSaveTiming%2CSearch%2CUniversalLanguageSelector&skin=vector&version=20150418T235519Z&* HTTP/1.1
+Host: bits.wikimedia.org
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://skylynx.cs.duke.edu/web/wiki/
+Connection: keep-alive
+
+
+=============================
+Sending to : 4
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 77
+Socket No. 70
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 77
+Socket No. 70
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/styles/simple.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 78
+Socket No. 5
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 78
+Socket No. 5
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/libs/jquery-1.4.2.min.js HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 81
+Socket No. 8
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 81
+Socket No. 8
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/MuseoSlab500/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 82
+Socket No. 9
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 82
+Socket No. 9
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/CallunaSansRegular/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 83
+Socket No. 10
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 83
+Socket No. 10
+-----------------------------
+GET http://fonts.googleapis.com/css?family=Calligraffitti HTTP/1.1
+Host: fonts.googleapis.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 79
+Socket No. 6
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 79
+Socket No. 6
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/libs/jquery.imgpreload.min.js HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 80
+Socket No. 7
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 80
+Socket No. 7
+-----------------------------
+GET http://www.cs.duke.edu/~bmm/fonts/SovbaRegular/fontface.css HTTP/1.1
+Host: www.cs.duke.edu
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Host closed connection.
+Closing Connection No. 47
+Sending to : 4
+Sending to : 12
+Sending to : 13
+Sending to : 14
+Sending to : 15
+Sending to : 16
+Sending to : 17
+=============================
+NEW CONNECTION
+-----------------------------
+Connection No. 84
+Socket No. 11
+=============================
+=============================
+NEW REQUEST : 0
+-----------------------------
+Connection No. 84
+Socket No. 11
+-----------------------------
+GET http://fonts.googleapis.com/css?family=Shadows+Into+Light HTTP/1.1
+Host: fonts.googleapis.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/31.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://www.cs.duke.edu/~bmm/
+Connection: keep-alive
+
+
+=============================
+Sending to : 19
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Host closed connection.
+Closing Connection No. 81
+Closing Connection No. 80
+Closing Connection No. 78
+Closing Connection No. 79
+Closing Connection No. 77
+Closing Connection No. 82

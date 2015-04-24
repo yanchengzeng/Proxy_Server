@@ -240,12 +240,10 @@ void* handle_host_downstream(void *host_dstream) {
 	/* forward data from host to client */
 	forward_data(host_fd, client_fd);
 
-	/* close host socket */
-	close(host_fd);
-
 	/* remove host from map */
 	pthread_mutex_lock(&dstream->c_conn->map_lock);
 	host_map->erase(host_addr);
+	close(host_fd);
 	pthread_mutex_unlock(&dstream->c_conn->map_lock);
 }
 
