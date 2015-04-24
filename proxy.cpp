@@ -11,14 +11,12 @@
 #include <string>
 #include <iostream>
 #include <map>
-#include <queue>
 
 #define MAX_BACK_LOG (5)
 #define RCV_BUF_SIZE (1500)
 #define DEBUG (0)
 
 using namespace std;
-struct host_conn;
 
 typedef struct {
 	string* op;
@@ -30,7 +28,7 @@ typedef struct {
 typedef struct {
 	int conn_num;
 	int client_fd;
-	map<string, host_conn> *host_fds;
+	map<string, int> *host_fds;
 	pthread_mutex_t hmap_lock;
 	pthread_mutex_t *cmap_lock;
 	int thread_count; // number of threads using the connection
@@ -42,13 +40,10 @@ typedef struct {
 	client_conn* c_conn;
 } client_request;
 
-struct host_conn{
+typedef struct {
 	string *host_addr;
-	int host_fd;
-	queue<string*> *req_queue;
 	client_conn* c_conn;
-};
-typedef struct host_conn host_conn;
+} host_downstream;
 
 int server(char* port);
 int create_tcp_conn(char* port, const char* addr);
@@ -117,7 +112,7 @@ int server(char* port)
 			c_conn = new client_conn;
 			c_conn->conn_num = ccount;
 			c_conn->client_fd = client_fd;
-			c_conn->host_fds = new map<string, host_conn>;
+			c_conn->host_fds = new map<string, int>;
 			c_conn->cmap_lock = &cmap_lock;
 			c_conn->thread_count = 1;
 			pthread_mutex_init(&c_conn->hmap_lock, NULL);
@@ -197,9 +192,9 @@ void* handle_client_conn(void* conn_ptr) {
 
 		/* close all sockets */
 		pthread_mutex_lock(&conn->hmap_lock);
-		map<string, host_conn>::iterator it;
+		map<string, int>::iterator it;
 		for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
-			close(it->second.host_fd);
+			close(it->second);
 			//TODO kill downstream threads
 		}
 		pthread_mutex_unlock(&conn->hmap_lock);
@@ -245,26 +240,23 @@ void* handle_client_request(client_request* req) {
 	/* get host socket */
 	int host_fd;
 	string host_addr = *greq->host;
-	map<string, host_conn> *host_map = conn->host_fds;
+	map<string, int> *host_map = conn->host_fds;
 
 	if(host_map->find(host_addr) == host_map->end()) { // no connection to host exists
 		pthread_mutex_lock(&conn->hmap_lock);
 		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
-
-		host_conn *h_conn = new host_conn;
-		h_conn->host_addr = greq->host;
-		h_conn->host_fd = host_fd;
-		h_conn->req_queue = new queue<string*>;
-		h_conn->c_conn = conn;
-
-		host_map->operator[](host_addr) = *h_conn; // add connection to host map
+		host_map->operator[](host_addr) = host_fd; // add connection to host map
 		pthread_mutex_unlock(&conn->hmap_lock);
 
+		host_downstream *hds = new host_downstream;
+		hds->host_addr = greq->host;
+		hds->c_conn = conn;
+
 		pthread_t worker;
-		pthread_create(&worker, NULL, handle_host_downstream, (void*) h_conn);
+		pthread_create(&worker, NULL, handle_host_downstream, (void*) hds);
 	} else { // connection to host exists
 		cout << "Host in map." << endl;
-		host_fd = host_map->operator[](host_addr).host_fd;
+		host_fd = host_map->operator[](host_addr);
 	}
 
 	/* forward request to host */
@@ -275,21 +267,21 @@ void* handle_client_request(client_request* req) {
 	}
 }
 
-void* handle_host_downstream(void *h_conn_ptr) {
-	host_conn* h_conn = (host_conn*) h_conn_ptr;
-	string host_addr = *h_conn->host_addr;
-	int client_fd = h_conn->c_conn->client_fd;
-	int host_fd = h_conn->host_fd;
-	map<string, host_conn> *host_map = h_conn->c_conn->host_fds;
+void* handle_host_downstream(void *host_dstream) {
+	host_downstream* dstream = (host_downstream*) host_dstream;
+	string host_addr = *dstream->host_addr;
+	int client_fd = dstream->c_conn->client_fd;
+	map<string, int> *host_map = dstream->c_conn->host_fds;
+	int host_fd = host_map->operator[](host_addr);
 
 	/* forward data from host to client */
 	forward_data(host_fd, client_fd);
 
 	/* remove host from map and close socket */
-	pthread_mutex_lock(&h_conn->c_conn->hmap_lock);
+	pthread_mutex_lock(&dstream->c_conn->hmap_lock);
 	host_map->erase(host_addr);
 	close(host_fd);
-	pthread_mutex_unlock(&h_conn->c_conn->hmap_lock);
+	pthread_mutex_unlock(&dstream->c_conn->hmap_lock);
 
 	pthread_exit(NULL);
 }
@@ -384,7 +376,7 @@ int parse_get_response(string *response) {
 	cout << "*************************" << endl;
 	cout << "RESPONSE" << endl;
 	cout << "*************************" << endl;
-	cout << *response << endl;
+	cout << response << endl;
 	cout << "*************************" << endl;
 
 	/* check that response has http header*/
@@ -405,7 +397,7 @@ int parse_get_response(string *response) {
 	string cl_tag = "Content-Length: ";
 	size_t cl_start = response->find(cl_tag) + cl_tag.length();
 	size_t cl_end = response->find("\n", cl_start);
-	string cl = response->substr(cl_start, cl_end - cl_start - 1);
+	string cl = response->substr(cl_start, cl_start - cl_start - 1);
 	cout << "Content-Length: " << cl << endl;
 	return atoi(cl.c_str());
 }
