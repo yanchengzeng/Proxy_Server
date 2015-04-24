@@ -52,6 +52,7 @@ void* handle_host_downstream(void* conn_fd);
 void* handle_client_request(client_request* c_req);
 get_request* parse_get_request(string* request);
 void* forward_data(int source_fd, int dest_fd);
+int parse_get_response(string *response);
 
 //TODO
 // - when to close downstream connection
@@ -104,8 +105,8 @@ int server(char* port)
 		/* retreive or construct host structure */
 		client_conn* c_conn;
 		if(conn_map->find(client_fd) == conn_map->end() ||
-				conn_map->operator[](client_fd)->thread_count == 0) { // new connection
-			cout << "NEW CONNECTION" << endl;
+				conn_map->operator[](client_fd)->thread_count <= 0) { // new connection
+			cout << "CREATING NEW CONNECTION : " << ccount << endl;
 
 			/* construct new client connection struct */
 			c_conn = new client_conn;
@@ -169,9 +170,9 @@ void* handle_client_conn(void* conn_ptr) {
 			char err[100];
 			sprintf(err, "Connection No. %d receive error", conn->conn_num);
 			perror(err);
-			continue;
+			break;
 		} else { // handle HTTP request
-			string* rcv_str = new string(rcv_buf);
+			string* rcv_str = new string(rcv_buf, rcv_len);
 			client_request* c_req = new client_request;
 			c_req->req_num = rcount;
 			c_req->data = rcv_str;
@@ -290,6 +291,7 @@ void* forward_data(int source_fd, int dest_fd) {
 	ssize_t fwd_len;
 	struct timeval tv;
 	fd_set read_fds;
+	int parse_code;
 
 	tv.tv_sec = 100;
 	tv.tv_usec = 500000;
@@ -315,6 +317,10 @@ void* forward_data(int source_fd, int dest_fd) {
 				cout << "Host closed connection." << endl;
 				break;
 			}
+
+			/* parse response and add to cache if appropriate */
+			string *response = new string(fwd_buf, fwd_len);
+			parse_code = parse_get_response(response);
 
 			/* forward data to destination */
 			if(send(dest_fd, fwd_buf, fwd_len, 0) <= 0) {
@@ -360,6 +366,40 @@ get_request* parse_get_request(string* request) {
 	greq->host = new string(host);
 
 	return greq;
+}
+
+// Parse codes:
+// -1 => don't buffer
+// 0  => start new buffer
+// >0 => append to current buffer
+int parse_get_response(string *response) {
+	cout << "*************************" << endl;
+	cout << "RESPONSE" << endl;
+	cout << "*************************" << endl;
+	cout << response << endl;
+	cout << "*************************" << endl;
+
+	/* check that response has http header*/
+	size_t http_loc = response->find("HTTP/1.1");
+	if(http_loc != 0) {
+		cout << "Response doesn't have HTTP header." << endl;
+		return -1;
+	}
+
+	/* check that response has success code */
+	size_t two_loc = response->find("2");
+	if(two_loc != 9) {
+		cout << "Response no successful." << endl;
+		return -1;
+	}
+
+	/* parse content length */
+	string cl_tag = "Content-Length: ";
+	size_t cl_start = response->find(cl_tag) + cl_tag.length();
+	size_t cl_end = response->find("\n", cl_start);
+	string cl = response->substr(cl_start, cl_start - cl_start - 1);
+	cout << "Content-Length: " << cl << endl;
+	return atoi(cl.c_str());
 }
 
 int create_tcp_conn(char* port, const char* addr) {
