@@ -27,10 +27,8 @@ typedef struct {
 typedef struct {
 	int conn_num;
 	int client_fd;
-	map<string, int> *host_fds;
-	pthread_mutex_t hmap_lock;
-	pthread_mutex_t *cmap_lock;
-	int thread_count; // number of threads using the connection
+	map<string, int>* host_fds;
+	pthread_mutex_t map_lock;
 } client_conn;
 
 typedef struct {
@@ -82,9 +80,6 @@ int server(char* port)
 {
 	int server_fd = create_tcp_conn(port, NULL);
 	int ccount = 0;
-	map<int, client_conn*> *conn_map = new map<int, client_conn*>;
-	pthread_mutex_t cmap_lock;
-	pthread_mutex_init(&cmap_lock, NULL);
 
 	/* listen for incoming connections */
 	listen(server_fd, MAX_BACK_LOG);
@@ -97,32 +92,13 @@ int server(char* port)
 			return -1;
 		}
 
-		/* retreive or construct host structure */
-		client_conn* c_conn;
-		if(conn_map->find(client_fd) == conn_map->end() ||
-				conn_map->operator[](client_fd)->thread_count == 0) { // new connection
-			cout << "NEW CONNECTION" << endl;
-
-			/* construct new client connection struct */
-			c_conn = new client_conn;
-			c_conn->conn_num = ccount;
-			c_conn->client_fd = client_fd;
-			c_conn->host_fds = new map<string, int>;
-			c_conn->cmap_lock = &cmap_lock;
-			c_conn->thread_count = 1;
-			pthread_mutex_init(&c_conn->hmap_lock, NULL);
-			ccount++;
-
-			/* add connection to map */
-			pthread_mutex_lock(&cmap_lock);
-			conn_map->operator[](client_fd) = c_conn;
-			pthread_mutex_unlock(&cmap_lock);
-
-		} else { // existing connection
-			cout << "EXISTING CONNECTION" << endl;
-			c_conn = conn_map->operator[](client_fd);
-			c_conn->thread_count++;
-		}
+		// construct new client connection struct
+		client_conn* c_conn = new client_conn;
+		c_conn->conn_num = ccount;
+		c_conn->client_fd = client_fd;
+		c_conn->host_fds = new map<string, int>;
+		pthread_mutex_init(&c_conn->map_lock, NULL);
+		ccount++;
 
 		// dispatch worker thread to handle connection
 		pthread_t worker;
@@ -152,6 +128,7 @@ void* handle_client_conn(void* conn_ptr) {
 
 	/* loop for client messages */
 	while (1) {
+		//TODO how long is HTTP requst?
 		char rcv_buf[RCV_BUF_SIZE]; // receive data buffer
 		ssize_t rcv_len; // receive data length
 
@@ -178,28 +155,19 @@ void* handle_client_conn(void* conn_ptr) {
 		}
 	}
 
-	/* set connection closed flag */
-	pthread_mutex_lock(conn->cmap_lock);
-	conn->thread_count--;
-
-	/* delete connection if no other threads are using it */
-	if(conn->thread_count == 0) {
-
-		/* close all sockets */
-		pthread_mutex_lock(&conn->hmap_lock);
-		map<string, int>::iterator it;
-		for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
-			close(it->second);
-			//TODO kill downstream threads
-		}
-		pthread_mutex_unlock(&conn->hmap_lock);
-		close(client_fd);
-
-		/* free connection struct memory */
-		delete conn->host_fds;
-		delete conn;
+	/* close all sockets */
+	pthread_mutex_lock(&conn->map_lock);
+	map<string, int>::iterator it;
+	for(it = conn->host_fds->begin(); it != conn->host_fds->end(); it++) {
+		close(it->second);
+		//TODO kill downstream threads
 	}
-	pthread_mutex_unlock(conn->cmap_lock);
+	pthread_mutex_unlock(&conn->map_lock);
+	close(client_fd);
+
+	/* free memory */
+	delete conn->host_fds;
+	delete conn;
 
 	pthread_exit(NULL);
 }
@@ -238,10 +206,10 @@ void* handle_client_request(client_request* req) {
 	map<string, int> *host_map = conn->host_fds;
 
 	if(host_map->find(host_addr) == host_map->end()) { // no connection to host exists
-		pthread_mutex_lock(&conn->hmap_lock);
+		pthread_mutex_lock(&conn->map_lock);
 		host_fd = create_tcp_conn((char*) "http", host_addr.c_str()); // create connection
 		host_map->operator[](host_addr) = host_fd; // add connection to host map
-		pthread_mutex_unlock(&conn->hmap_lock);
+		pthread_mutex_unlock(&conn->map_lock);
 
 		host_downstream *hds = new host_downstream;
 		hds->host_addr = greq->host;
@@ -272,11 +240,13 @@ void* handle_host_downstream(void *host_dstream) {
 	/* forward data from host to client */
 	forward_data(host_fd, client_fd);
 
-	/* remove host from map and close socket */
-	pthread_mutex_lock(&dstream->c_conn->hmap_lock);
-	host_map->erase(host_addr);
+	/* close host socket */
 	close(host_fd);
-	pthread_mutex_unlock(&dstream->c_conn->hmap_lock);
+
+	/* remove host from map */
+	pthread_mutex_lock(&dstream->c_conn->map_lock);
+	host_map->erase(host_addr);
+	pthread_mutex_unlock(&dstream->c_conn->map_lock);
 }
 
 void* forward_data(int source_fd, int dest_fd) {
@@ -311,10 +281,7 @@ void* forward_data(int source_fd, int dest_fd) {
 			}
 
 			/* forward data to destination */
-			if(send(dest_fd, fwd_buf, fwd_len, 0) <= 0) {
-				perror("Downstream send error");
-				break;
-			}
+			send(dest_fd, fwd_buf, fwd_len, 0);
 		}
 	}
 }
