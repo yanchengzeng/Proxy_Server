@@ -16,6 +16,7 @@
 #define MAX_BACK_LOG (5)
 #define RCV_BUF_SIZE (1500)
 #define DEBUG (0)
+#define MEGABYTE (1048576)
 
 using namespace std;
 struct host_conn;
@@ -24,8 +25,8 @@ map<int, queue<string*>*> *cache_name_map;
 map<string*, string*> *cache;
 pthread_mutex_t cache_map_lock;
 pthread_mutex_t cache_lock;
-int max_cache_size;
-int cur_cache_size;
+long max_cache_size;
+long cur_cache_size;
 
 typedef struct {
 	string* op;
@@ -84,7 +85,8 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	max_cache_size = atoi(argv[2]);
+	max_cache_size = atoi(argv[2]) * MEGABYTE;
+	cur_cache_size = 0;
 
 	server(port_str);
 
