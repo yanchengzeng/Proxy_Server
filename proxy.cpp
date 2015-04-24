@@ -22,7 +22,7 @@ using namespace std;
 struct host_conn;
 
 map<int, queue<string*>*> *cache_name_map;
-map<string*, string*> *cache;
+map<string, string*> *cache;
 pthread_mutex_t cache_map_lock;
 pthread_mutex_t cache_lock;
 long max_cache_size;
@@ -104,7 +104,7 @@ int server(char* port)
 
 	/* construct cache name map */
 	cache_name_map = new map<int, queue<string*>*>;
-	cache = new map<string*, string*>;
+	cache = new map<string, string*>;
 	pthread_mutex_init(&cache_map_lock, NULL);
 	pthread_mutex_init(&cache_lock, NULL);
 
@@ -251,8 +251,28 @@ void* handle_client_request(client_request* req) {
 	/* parse get request */
 	get_request* greq = parse_get_request(request);
 
+	/* define page entry depending on request type */
+	string *page;
+	cout << "greq->op : " << *greq->op << endl;
+	if(*greq->op == ("GET")) {
+		page = new string(*greq->page);
+	} else {
+		page = new string("NO_CACHE");
+	}
+
 	/* check if requested page is cached */
-	// TODO
+	cout << "CACHE: checking for " << *page << endl;
+	if(cache->find(*page) != cache->end()) {
+		cout << "CACHE: found data for " << *page << endl;
+		string *cache_entry = cache->operator[](*page);
+		//TODO update LRU status
+
+		/* cache hit -- send data to client */
+		if(send(conn->client_fd, cache_entry->c_str(), cache_entry->length(), 0) <= 0) {
+			perror("Cache send error");
+			return NULL;
+		}
+	}
 
 	/* get host socket */
 	int host_fd;
@@ -277,15 +297,6 @@ void* handle_client_request(client_request* req) {
 	} else { // connection to host exists
 		cout << "Host in map." << endl;
 		host_fd = host_map->operator[](host_addr).host_fd;
-	}
-
-	/* define page entry depending on request type */
-	string *page;
-	cout << "greq->op : " << *greq->op << endl;
-	if(*greq->op == ("GET")) {
-		page = new string(*greq->page);
-	} else {
-		page = new string("NO_CACHE");
 	}
 
 	/* populate host name map */
@@ -369,7 +380,7 @@ void* forward_data(int source_fd, int dest_fd) {
 			parse_code = parse_get_response(response);
 
 				if(cache_name_map->find(source_fd) == cache_name_map->end()) {
-					cout << "CACHE: host fd not in cache name map." << endl;
+					cout << source_fd << " CACHE: host fd not in cache name map" << endl;
 				} else {
 					/* get page name */
 					pthread_mutex_lock(&cache_map_lock);
@@ -380,23 +391,25 @@ void* forward_data(int source_fd, int dest_fd) {
 
 					/* do appropriate caching */
 					if(*page_name == "NO_CACHE") {
-						cout << "CACHE: skipping non-GET data" << endl;
+						cout << source_fd << " CACHE: skipping non-GET data" << endl;
 					} else if(*page_name == "FIRST") {
-						cout << "CACHE: huge error, first seen" << endl;
+						cout << source_fd << " CACHE: huge error, got FIRST" << endl;
 					} else {
 
 						/* evict cache block if not enough space */
 						pthread_mutex_lock(&cache_lock);
 						cur_cache_size += response->length();
 						if(cur_cache_size > max_cache_size) {
-							cout << "CACHE: not enough space to store response. evicting block by LRU." << endl;
+							cout << source_fd << " CACHE: not enough space to store response. evicting block by LRU." << endl;
 							//TODO evict cache block
 						}
 
 						if(parse_code == 0) {
-							cache->operator[](page_name) = response;
+							cout << source_fd << " CACHE: adding new entry " << *page_name << endl;
+							cache->operator[](*page_name) = response;
 						} else {
-							cache->operator[](page_name)->operator+=(*response);
+							cout << source_fd << " CACHE: appending to existing entry " << *page_name << endl;
+							cache->operator[](*page_name)->operator+=(*response);
 						}
 						pthread_mutex_unlock(&cache_lock);
 					}
