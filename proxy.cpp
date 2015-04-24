@@ -424,13 +424,15 @@ void* forward_data(int source_fd, int dest_fd) {
 							cache->erase(lru_block);
 						}
 
-						if(parse_code == 0) {
-							cout << source_fd << " CACHE: adding new entry " << *page_name << endl;
-							cache->operator[](*page_name) = response;
-							evict_list->push_back(*page_name);
-						} else if(parse_code == 1) {
-							cout << source_fd << " CACHE: appending to existing entry " << *page_name << endl;
-							cache->operator[](*page_name)->operator+=(*response);
+						if(parse_code >= 0) {
+							if(cache->find(*page_name) == cache->end()) {
+								cout << source_fd << " CACHE: adding new entry " << *page_name << endl;
+								cache->operator[](*page_name) = response;
+								evict_list->push_back(*page_name);
+							} else {
+								cout << source_fd << " CACHE: appending to existing entry " << *page_name << endl;
+								cache->operator[](*page_name)->operator+=(*response);
+							}
 						}
 						pthread_mutex_unlock(&cache_lock);
 					}
@@ -488,9 +490,18 @@ get_request* parse_get_request(string* request) {
 // >0 => append to current buffer
 int parse_get_response(string *response) {
 	size_t http_loc = response->find("HTTP/1.1");
+	cout << "++++++++++++++++++++++++++" << endl;
+	cout << *response << endl;
+	cout << "++++++++++++++++++++++++++" << endl;
 	if(http_loc == 0) {
-		size_t ok_loc = response->find("200");
-		if(ok_loc == 9) {
+
+		/* parse http code */
+		size_t first_space = response->find(" ");
+		size_t second_space = response->find(" ", first_space + 1);
+		string code = response->substr(first_space + 1, second_space - first_space - 1);
+		cout << "CODE: " << code << endl;
+
+		if(code == "200") {
 			cout << "Response is new data and reads success." << endl;
 			cout << "*****************************" << endl;
 			cout << *response << endl;
