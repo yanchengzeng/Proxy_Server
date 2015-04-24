@@ -182,10 +182,10 @@ void* handle_client_conn(void* conn_ptr) {
 		ssize_t rcv_len; // receive data length
 
 		/* check for timeout */
-		if(time(NULL) - start_time >= 3) {
-			cout << "TIMEOUT" << endl;
-			break;
-		}
+		//if(time(NULL) - start_time >= 3) {
+			//cout << "TIMEOUT" << endl;
+			//break;
+		//}
 
 		/* receive message from client */
 		rcv_len = recv(client_fd, (void*) rcv_buf, sizeof(rcv_buf), 0);
