@@ -21,7 +21,11 @@ using namespace std;
 struct host_conn;
 
 map<int, queue<string*>*> *cache_name_map;
+map<string*, string*> *cache;
+pthread_mutex_t cache_map_lock;
 pthread_mutex_t cache_lock;
+int max_cache_size;
+int cur_cache_size;
 
 typedef struct {
 	string* op;
@@ -80,7 +84,7 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	int cache_size = atoi(argv[2]);
+	max_cache_size = atoi(argv[2]);
 
 	server(port_str);
 
@@ -98,6 +102,8 @@ int server(char* port)
 
 	/* construct cache name map */
 	cache_name_map = new map<int, queue<string*>*>;
+	cache = new map<string*, string*>;
+	pthread_mutex_init(&cache_map_lock, NULL);
 	pthread_mutex_init(&cache_lock, NULL);
 
 	/* listen for incoming connections */
@@ -281,10 +287,11 @@ void* handle_client_request(client_request* req) {
 	}
 
 	/* populate host name map */
-	pthread_mutex_lock(&cache_lock);
+	pthread_mutex_lock(&cache_map_lock);
 	if(cache_name_map->find(host_fd) == cache_name_map->end()) { // no entry exists
 		/* initialize new page queue and push current page */
 		queue<string*> *req_queue = new queue<string*>;
+		req_queue->push(new string("FIRST"));
 		req_queue->push(page);
 
 		/* add queue to cache map */
@@ -292,7 +299,7 @@ void* handle_client_request(client_request* req) {
 	} else { // entry exists
 		cache_name_map->operator[](host_fd)->push(page);
 	}
-	pthread_mutex_unlock(&cache_lock);
+	pthread_mutex_unlock(&cache_map_lock);
 
 
 	/* forward request to host */
@@ -355,8 +362,43 @@ void* forward_data(int source_fd, int dest_fd) {
 			}
 
 			/* parse response and add to cache if appropriate */
+			string *page_name;
 			string *response = new string(fwd_buf, fwd_len);
 			parse_code = parse_get_response(response);
+
+				if(cache_name_map->find(source_fd) == cache_name_map->end()) {
+					cout << "CACHE: host fd not in cache name map." << endl;
+				} else {
+					/* get page name */
+					pthread_mutex_lock(&cache_map_lock);
+					queue<string*> *req_queue = cache_name_map->operator[](source_fd);
+					if(parse_code <= 0) req_queue->pop();
+					page_name = req_queue->front();
+					pthread_mutex_unlock(&cache_map_lock);
+
+					/* do appropriate caching */
+					if(*page_name == "NO_CACHE") {
+						cout << "CACHE: skipping non-GET data" << endl;
+					} else if(*page_name == "FIRST") {
+						cout << "CACHE: huge error, first seen" << endl;
+					} else {
+
+						/* evict cache block if not enough space */
+						pthread_mutex_lock(&cache_lock);
+						cur_cache_size += response->length();
+						if(cur_cache_size > max_cache_size) {
+							cout << "CACHE: not enough space to store response. evicting block by LRU." << endl;
+							//TODO evict cache block
+						}
+
+						if(parse_code == 0) {
+							cache->operator[](page_name) = response;
+						} else {
+							cache->operator[](page_name)->operator+=(*response);
+						}
+						pthread_mutex_unlock(&cache_lock);
+					}
+				}
 
 			/* forward data to destination */
 			if(send(dest_fd, fwd_buf, fwd_len, 0) <= 0) {
@@ -406,36 +448,23 @@ get_request* parse_get_request(string* request) {
 
 // Parse codes:
 // -1 => don't buffer
-// 0  => start new buffer
+//  0 => start new buffer
 // >0 => append to current buffer
 int parse_get_response(string *response) {
-	cout << "*************************" << endl;
-	cout << "RESPONSE" << endl;
-	cout << "*************************" << endl;
-	cout << *response << endl;
-	cout << "*************************" << endl;
-
-	/* check that response has http header*/
 	size_t http_loc = response->find("HTTP/1.1");
-	if(http_loc != 0) {
-		cout << "Response doesn't have HTTP header." << endl;
-		return -1;
+	if(http_loc == 0) {
+		size_t two_loc = response->find("2");
+		if(two_loc == 9) {
+			cout << "Response is new data and reads success." << endl;
+			return 0;
+		} else {
+			cout << "Response is new data and reads failure." << endl;
+			return -1;
+		}
+	} else {
+		cout << "Response is continued data." << endl;
+		return 1;
 	}
-
-	/* check that response has success code */
-	size_t two_loc = response->find("2");
-	if(two_loc != 9) {
-		cout << "Response no successful." << endl;
-		return -1;
-	}
-
-	/* parse content length */
-	string cl_tag = "Content-Length: ";
-	size_t cl_start = response->find(cl_tag) + cl_tag.length();
-	size_t cl_end = response->find("\n", cl_start);
-	string cl = response->substr(cl_start, cl_end - cl_start - 1);
-	cout << "Content-Length: " << cl << endl;
-	return atoi(cl.c_str());
 }
 
 int create_tcp_conn(char* port, const char* addr) {
