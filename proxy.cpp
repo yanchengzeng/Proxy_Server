@@ -271,15 +271,16 @@ void* handle_client_request(client_request* req) {
 		host_fd = host_map->operator[](host_addr).host_fd;
 	}
 
-	/* populate host name map */
+	/* define page entry depending on request type */
 	string *page;
-	if(greq->op->compare("GET")) {
-		cout << "THIS IS GETT" << endl;
+	cout << "greq->op : " << *greq->op << endl;
+	if(*greq->op == ("GET")) {
 		page = new string(*greq->page);
 	} else {
 		page = new string("NO_CACHE");
 	}
 
+	/* populate host name map */
 	pthread_mutex_lock(&cache_lock);
 	if(cache_name_map->find(host_fd) == cache_name_map->end()) { // no entry exists
 		/* initialize new page queue and push current page */
