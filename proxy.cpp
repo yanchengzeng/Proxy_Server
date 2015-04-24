@@ -270,8 +270,8 @@ void* handle_client_request(client_request* req) {
 		/* cache hit -- send data to client */
 		if(send(conn->client_fd, cache_entry->c_str(), cache_entry->length(), 0) <= 0) {
 			perror("Cache send error");
-			return NULL;
 		}
+		return NULL;
 	}
 
 	/* get host socket */
@@ -407,7 +407,7 @@ void* forward_data(int source_fd, int dest_fd) {
 						if(parse_code == 0) {
 							cout << source_fd << " CACHE: adding new entry " << *page_name << endl;
 							cache->operator[](*page_name) = response;
-						} else {
+						} else if(parse_code == 1) {
 							cout << source_fd << " CACHE: appending to existing entry " << *page_name << endl;
 							cache->operator[](*page_name)->operator+=(*response);
 						}
@@ -468,12 +468,12 @@ get_request* parse_get_request(string* request) {
 int parse_get_response(string *response) {
 	size_t http_loc = response->find("HTTP/1.1");
 	if(http_loc == 0) {
-		size_t two_loc = response->find("2");
-		if(two_loc == 9) {
+		size_t ok_loc = response->find("200");
+		if(ok_loc == 9) {
 			cout << "Response is new data and reads success." << endl;
 			return 0;
 		} else {
-			cout << "Response is new data and reads failure." << endl;
+			cout << "Response is new data and reads non-success." << endl;
 			return -1;
 		}
 	} else {
