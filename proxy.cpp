@@ -2,6 +2,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/signal.h>
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -57,6 +58,9 @@ void* forward_data(int source_fd, int dest_fd);
 
 int main(int argc, char** argv)
 {
+	/* ignore sigpipe */
+	signal(SIGPIPE, SIG_IGN);
+
 	if (argc < 2) {
 		printf("Command should be: proxy <port> cache_size\n");
 		return 1;
@@ -196,7 +200,7 @@ void* handle_client_conn(void* conn_ptr) {
 		close(client_fd);
 
 		/* free connection struct memory */
-		delete conn->host_fds;
+		//delete conn->host_fds;
 		delete conn;
 	}
 	pthread_mutex_unlock(conn->cmap_lock);
@@ -221,10 +225,10 @@ void* handle_client_request(client_request* req) {
 	}
 
 	/* return if not GET request */
-	if(request->find("GET") != 0) {
-		cout << "Ignoring non-GET request." << endl;
-		return NULL;
-	}
+	//if(request->find("GET") != 0) {
+		//cout << "Ignoring non-GET request." << endl;
+		//return NULL;
+	//}
 
 	/* parse get request */
 	get_request* greq = parse_get_request(request);
@@ -277,6 +281,8 @@ void* handle_host_downstream(void *host_dstream) {
 	host_map->erase(host_addr);
 	close(host_fd);
 	pthread_mutex_unlock(&dstream->c_conn->hmap_lock);
+
+	pthread_exit(NULL);
 }
 
 void* forward_data(int source_fd, int dest_fd) {
