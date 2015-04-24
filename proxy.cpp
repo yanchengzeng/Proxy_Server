@@ -12,6 +12,7 @@
 #include <iostream>
 #include <map>
 #include <queue>
+#include <list>
 
 #define MAX_BACK_LOG (5)
 #define RCV_BUF_SIZE (1500)
@@ -23,6 +24,7 @@ struct host_conn;
 
 map<int, queue<string*>*> *cache_name_map;
 map<string, string*> *cache;
+list<string> *evict_list;
 pthread_mutex_t cache_map_lock;
 pthread_mutex_t cache_lock;
 long max_cache_size;
@@ -105,6 +107,7 @@ int server(char* port)
 	/* construct cache name map */
 	cache_name_map = new map<int, queue<string*>*>;
 	cache = new map<string, string*>;
+	evict_list = new list<string>;
 	pthread_mutex_init(&cache_map_lock, NULL);
 	pthread_mutex_init(&cache_lock, NULL);
 
@@ -161,6 +164,7 @@ void* handle_client_conn(void* conn_ptr) {
 	client_conn* conn = (client_conn*) conn_ptr;
 	int client_fd = conn->client_fd;
 	int rcount = 0;
+	time_t start_time = time(NULL);
 
 	/* debug */
 	if(1) {
@@ -176,6 +180,12 @@ void* handle_client_conn(void* conn_ptr) {
 	while (1) {
 		char rcv_buf[RCV_BUF_SIZE]; // receive data buffer
 		ssize_t rcv_len; // receive data length
+
+		/* check for timeout */
+		if(time(NULL) - start_time >= 3) {
+			cout << "TIMEOUT" << endl;
+			break;
+		}
 
 		/* receive message from client */
 		rcv_len = recv(client_fd, (void*) rcv_buf, sizeof(rcv_buf), 0);
@@ -265,7 +275,10 @@ void* handle_client_request(client_request* req) {
 	if(cache->find(*page) != cache->end()) {
 		cout << "CACHE: found data for " << *page << endl;
 		string *cache_entry = cache->operator[](*page);
-		//TODO update LRU status
+
+		/* update evict list */
+		evict_list->remove(*page);
+		evict_list->push_back(*page);
 
 		/* cache hit -- send data to client */
 		if(send(conn->client_fd, cache_entry->c_str(), cache_entry->length(), 0) <= 0) {
@@ -399,14 +412,22 @@ void* forward_data(int source_fd, int dest_fd) {
 						/* evict cache block if not enough space */
 						pthread_mutex_lock(&cache_lock);
 						cur_cache_size += response->length();
-						if(cur_cache_size > max_cache_size) {
+						while(cur_cache_size > max_cache_size) {
 							cout << source_fd << " CACHE: not enough space to store response. evicting block by LRU." << endl;
-							//TODO evict cache block
+
+							/* get least recently used block */
+							string lru_block = evict_list->front();
+							evict_list->pop_front();
+
+							/* remove block from cache */
+							cur_cache_size -= cache->operator[](lru_block)->length();
+							cache->erase(lru_block);
 						}
 
 						if(parse_code == 0) {
 							cout << source_fd << " CACHE: adding new entry " << *page_name << endl;
 							cache->operator[](*page_name) = response;
+							evict_list->push_back(*page_name);
 						} else if(parse_code == 1) {
 							cout << source_fd << " CACHE: appending to existing entry " << *page_name << endl;
 							cache->operator[](*page_name)->operator+=(*response);
@@ -471,6 +492,9 @@ int parse_get_response(string *response) {
 		size_t ok_loc = response->find("200");
 		if(ok_loc == 9) {
 			cout << "Response is new data and reads success." << endl;
+			cout << "*****************************" << endl;
+			cout << *response << endl;
+			cout << "*****************************" << endl;
 			return 0;
 		} else {
 			cout << "Response is new data and reads non-success." << endl;
